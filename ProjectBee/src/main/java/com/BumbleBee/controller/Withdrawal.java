@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.BumbleBee.model.TbMemberDAO;
 import com.BumbleBee.model.TbMemberDTO;
 
-public class Withdrawal extends HttpServlet {
+public class Withdrawal implements Command {
 	private static final long serialVersionUID = 1L;
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

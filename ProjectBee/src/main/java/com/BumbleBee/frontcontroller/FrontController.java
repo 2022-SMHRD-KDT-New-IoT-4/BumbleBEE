@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.BumbleBee.controller.Command;
+import com.BumbleBee.controller.Login;
+import com.BumbleBee.controller.Logout;
+import com.BumbleBee.controller.Modify;
+import com.BumbleBee.controller.Register;
+import com.BumbleBee.controller.Select;
+import com.BumbleBee.controller.Withdrawal;
 
 
 // ---> 확장자 패턴 .do로 끝나는 모든 요청을 처리하겠다!
@@ -26,12 +32,12 @@ public class FrontController extends HttpServlet {
 		map = new HashMap<>();
 		// HashMap<Key로 지정할 자료형, Value로 들어갈 자료형>
 		// 1) HashMap에 데이터 추가하기 
-//		map.put("Login.do", new LoginProgram());
-//		map.put("Join.do", new JoinProgram());
-//		map.put("Select.do", new SelectAllProgram());
-//		map.put("Logout.do", new Logout());
-//		map.put("Update.do", new UpdateProgram());
-//		map.put("Main.do", new MainProgram());
+		map.put("Register.rgx", new Register());
+		map.put("Login.rgx", new Login());
+		map.put("Withdrawal.rgx", new Withdrawal());
+		map.put("Logout.rgx", new Logout());
+		map.put("Modify.rgx", new Modify());
+		map.put("Select.rgx", new Select());
 //		map.put("GoUpdate.do", new GoUpdateProgram());
 //		map.put("Ajax.do", new AjaxTest());
 	}
@@ -41,7 +47,6 @@ public class FrontController extends HttpServlet {
 	
 	
 	
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 모든 요청을 한군데에서 처리하게끔 만들기

@@ -12,7 +12,7 @@ import com.BumbleBee.model.TbMemberDAO;
 import com.BumbleBee.model.TbMemberDTO;
 
 
-public class Modify extends HttpServlet {
+public class Modify implements Command {
 	private static final long serialVersionUID = 1L;
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
