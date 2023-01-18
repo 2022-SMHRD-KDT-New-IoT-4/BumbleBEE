@@ -24,7 +24,12 @@ public class Withdrawal extends HttpServlet {
 		// 4. dao
 		TbMemberDAO dao = new TbMemberDAO();
 		int row = dao.withdrawal(dto);
-		
+		if(row > 0) {
+			// 회원탈퇴 성공
+		}
+		else {
+			// 회원탈퇴 실패
+		}
 		return null;
 	}
 
