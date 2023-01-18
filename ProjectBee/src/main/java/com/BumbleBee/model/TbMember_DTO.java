@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class TbMember_DTO {
 	// 회원정보 
-	public class TbMember {
 
 	    // 회원 아이디 
 	    private String mbId;
@@ -106,7 +105,7 @@ public class TbMember_DTO {
 	    }
 
 	    // TbMember 모델 복사
-	    public void CopyData(TbMember param)
+	    public void CopyData(TbMember_DTO param)
 	    {
 	        this.mbId = param.getMbId();
 	        this.mbPw = param.getMbPw();
@@ -120,4 +119,3 @@ public class TbMember_DTO {
 	    }
 	}
 
-}
