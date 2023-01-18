@@ -10,7 +10,7 @@
 
 	<typeAliases>
 	<!-- MessageMapper파일에서 사용할 type들의 별명을 지정해주는 공간 -->
-		<typeAlias type="com.smhrd.model.MessageDTO" alias="MessageDTO"/>
+		<typeAlias type="com.BumbleBee.model.TbBoardDTO" alias="TbBoardDTO"/>
 	</typeAliases>
 
 
@@ -49,7 +49,7 @@
   <!-- 연결하고 싶은 파일의 명칭 -->
   <!-- mapper파일이 생길때마다 반드시 연결할 수 있도록 기술해줄 것! -->
   <mappers>
-    <mapper resource="com/smhrd/db/MessageMapper.xml"/>
+    <mapper resource="com/BumbleBee/db/TbBoardMapper.xml"/>
   </mappers>
   
   

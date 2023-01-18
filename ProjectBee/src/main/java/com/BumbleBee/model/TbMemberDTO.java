@@ -2,7 +2,7 @@ package com.BumbleBee.model;
 
 import java.sql.Date;
 
-public class TbMember_DTO {
+public class TbMemberDTO {
 	// 회원정보 
 
 	    // 회원 아이디 
@@ -105,7 +105,7 @@ public class TbMember_DTO {
 	    }
 
 	    // TbMember 모델 복사
-	    public void CopyData(TbMember_DTO param)
+	    public void CopyData(TbMemberDTO param)
 	    {
 	        this.mbId = param.getMbId();
 	        this.mbPw = param.getMbPw();

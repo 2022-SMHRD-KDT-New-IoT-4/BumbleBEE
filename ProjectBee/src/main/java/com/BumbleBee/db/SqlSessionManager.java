@@ -17,7 +17,7 @@ public class SqlSessionManager {
 	// 생성자와 유사한 영역 컨트롤f11 -> jvm -> static영역찾아 실행
 	static {
 		// 1. 설정 파일을 읽을건지 경로를 문자열로 지정
-		String resource = "com/smhrd/db/mybatis-config.xml";
+		String resource = "com/BumbleBee/db/mybatis-config.xml";
 		// 2. 설정 파일을 읽어서 데이터베이스 연결하기
 		InputStream inputStream;
 		

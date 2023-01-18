@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.smhrd.model.MessageDAO" > 
+<mapper namespace="com.BumbleBee.model.TbBoardDAO" > 
 
   <insert id="join" parameterType="MessageDTO">
   		insert into message values(#{email},#{pw},#{phone},#{address})

@@ -2,7 +2,7 @@ package com.BumbleBee.model;
 
 import java.sql.Date;
 
-public class TbBoard_DTO {
+public class TbBoardDTO {
 	// 게시판 
 
 	    // 글 순번 
@@ -94,7 +94,7 @@ public class TbBoard_DTO {
 	    }
 
 	    // TbBoard 모델 복사
-	    public void CopyData(TbBoard_DTO param)
+	    public void CopyData(TbBoardDTO param)
 	    {
 	        this.boardSeq = param.getBoardSeq();
 	        this.boardTitle = param.getBoardTitle();
