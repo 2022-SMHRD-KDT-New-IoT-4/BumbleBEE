@@ -4,6 +4,19 @@ import java.sql.Date;
 
 public class TbBoardDTO {
 	// 게시판 
+	
+	// TbBoard 모델 복사
+	public void CopyData(TbBoardDTO param)
+	{
+		this.boardSeq = param.getBoardSeq();
+		this.boardTitle = param.getBoardTitle();
+		this.boardContent = param.getBoardContent();
+		this.boardFile = param.getBoardFile();
+		this.boardDt = param.getBoardDt();
+		this.mbId = param.getMbId();
+		this.boardViews = param.getBoardViews();
+		this.boardLikes = param.getBoardLikes();
+	}
 
 	    // 글 순번 
 	    private Double boardSeq;
@@ -93,16 +106,4 @@ public class TbBoardDTO {
 	        this.boardLikes = boardLikes;
 	    }
 
-	    // TbBoard 모델 복사
-	    public void CopyData(TbBoardDTO param)
-	    {
-	        this.boardSeq = param.getBoardSeq();
-	        this.boardTitle = param.getBoardTitle();
-	        this.boardContent = param.getBoardContent();
-	        this.boardFile = param.getBoardFile();
-	        this.boardDt = param.getBoardDt();
-	        this.mbId = param.getMbId();
-	        this.boardViews = param.getBoardViews();
-	        this.boardLikes = param.getBoardLikes();
-	    }
 	}

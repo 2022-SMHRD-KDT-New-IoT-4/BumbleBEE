@@ -50,6 +50,9 @@
   <!-- mapper파일이 생길때마다 반드시 연결할 수 있도록 기술해줄 것! -->
   <mappers>
     <mapper resource="com/BumbleBee/db/TbBoardMapper.xml"/>
+    <mapper resource="com/BumbleBee/db/TbMemberMapper.xml"/>
+    <mapper resource="com/BumbleBee/db/TbBeehiveMapper.xml"/>
+    <mapper resource="com/BumbleBee/db/TbCommentMapper.xml"/>
   </mappers>
   
   
