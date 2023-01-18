@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.smhrd.model.MessageDAO" > 
+
+  <insert id="join" parameterType="MessageDTO">
+  		insert into message values(#{email},#{pw},#{phone},#{address})
+  </insert>
+  
+  <select id="login" parameterType="MessageDTO" resultType="MessageDTO">
+  		select * from message where email = #{email} and pw = #{pw}
+  </select>
+  
+  <update id="update" parameterType="MessageDTO">
+  		update message 
+  		set pw = #{pw}, phone = #{phone}, address = #{address} 
+  		where email = #{email}
+  </update>
+  
+  <!-- resulType쪽에 굳이 list를 명시할 필요는 없다.
+  	>>> 내가만든 나만의 자료형만 잡아주면 List로 담는 작업은
+  		mybatis가 자동으로 수행해준다!
+   -->
+  <select id="selectAll" resultType="MessageDTO">
+  	select * from message
+  	where email != 'admin'
+  </select>
+  
+</mapper>
