@@ -24,7 +24,7 @@ public class Register implements Command {
 		String job = request.getParameter("job");
 		String name = request.getParameter("name");
 		// 2. 묶어주기(생성자에 매개변수로 넣어주기)
-		TbMemberDTO dto = new TbMemberDTO(id, pw, name, age, job, region, tel, null, name);
+		TbMemberDTO dto = new TbMemberDTO(id, pw, name, age, job, region, tel, name);
 		
 		// 3. dao함수 호출
 		TbMemberDAO dao = new TbMemberDAO();

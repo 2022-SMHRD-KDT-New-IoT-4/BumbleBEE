@@ -48,7 +48,7 @@
 						</ul>
 						<ul class="actions vertical">
 							<li><h5>회원가입</h5></li>
-								<form action="Join.do" method="post">
+								<form action="Register.rgx" method="post">
 									<li><input type="text"  placeholder="Email을 입력하세요" name = "id"></li>
 									<li><input type="password"  placeholder="PW를 입력하세요" name = "pw"></li>
 									<li><input type="text"  placeholder="이름를 입력하세요" name = "name"></li>

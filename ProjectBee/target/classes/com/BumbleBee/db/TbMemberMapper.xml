@@ -7,7 +7,7 @@
 
   <insert id="register" parameterType="TbMemberDTO">
   		insert into tb_member
-  		values(#{id},#{pw},#{name},#{age},#{job},#{region},#{tel},#{joindate},#{type})
+  		values(#{id},#{pw},#{name},#{age},#{job},#{region},#{tel},#{sysdate},#{type})
   </insert>
   
   <select id="login" parameterType="TbMemberDTO" resultType="TbMemberDTO">

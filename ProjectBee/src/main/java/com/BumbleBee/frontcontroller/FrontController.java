@@ -45,10 +45,10 @@ public class FrontController extends HttpServlet {
 //		map.put("GoUpdate.do", new GoUpdateProgram());  jsp에서 jsp로 이동하기 위해서는 servlet을 한번 거쳐서 이동해야함 --> 왜??
 //		map.put("Ajax.do", new AjaxTest());
 		
-		map.put("Boardwrite", new Boardwrite());
-		map.put("Boardmodify", new Boardmodify());
-		map.put("Boarddelte", new Boarddelete());
-		map.put("Boardlikes", new Boardlikes());
+		map.put("Boardwrite.rgx", new Boardwrite());
+		map.put("Boardmodify.rgx", new Boardmodify());
+		map.put("Boarddelte.rgx", new Boarddelete());
+		map.put("Boardlikes.rgx", new Boardlikes());
 		
 	}
 	
