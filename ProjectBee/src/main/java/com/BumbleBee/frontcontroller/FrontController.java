@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.BumbleBee.controller.Boarddelete;
+import com.BumbleBee.controller.Boardlikes;
+import com.BumbleBee.controller.Boardmodify;
+import com.BumbleBee.controller.Boardwrite;
 import com.BumbleBee.controller.Command;
 import com.BumbleBee.controller.Login;
 import com.BumbleBee.controller.Logout;
@@ -38,8 +41,13 @@ public class FrontController extends HttpServlet {
 		map.put("Logout.rgx", new Logout());
 		map.put("Modify.rgx", new Modify());
 		map.put("Select.rgx", new Select());
-//		map.put("GoUpdate.do", new GoUpdateProgram());
+//		map.put("GoUpdate.do", new GoUpdateProgram());  jsp에서 jsp로 이동하기 위해서는 servlet을 한번 거쳐서 이동해야함 --> 왜??
 //		map.put("Ajax.do", new AjaxTest());
+		map.put("Boardwrite", new Boardwrite());
+		map.put("Boardmodify", new Boardmodify());
+		map.put("Boarddelte", new Boarddelete());
+		map.put("Boardlikes", new Boardlikes());
+		
 	}
 	
 	

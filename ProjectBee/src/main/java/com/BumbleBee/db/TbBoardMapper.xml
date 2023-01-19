@@ -4,7 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.BumbleBee.model.TbBoardDAO" > 
-
-  
-  
+	<insert id="boardwrite" parameterType="TbMemberDTO">
+		insert into tb_board 
+		values(#{boardTitle}, #{boardContent}, #{null},#{id}, #{0}, #{0})
+	</insert>
+  	
+  	<update id="boardmodify" parameterType="TbMemberDTO">
+  		update from tb_board
+  		set board_title = #{boardTitle}, board_content = #{boardContent}
+  	</update>
+  	
+  	<delete id="boarddelete" parameterType="TbMemberDTO">
+  		delete from tb_board
+  		where board_seq = #{boardSeq}
+  	</delete>
+  	
+  	<update id="boardlikes" parameterType="TbMemberDTO">
+  		update from tb_board
+  		set board_likes = #{boardLikes}
+  	</update>
+  	
+  	<select id="boardselectall" resultType="TbMemberDTO">
+  		select * from tb_board
+  	</select>
+  	
 </mapper>
