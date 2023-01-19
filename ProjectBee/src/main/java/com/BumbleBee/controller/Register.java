@@ -16,9 +16,15 @@ public class Register implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 데이터 가져오기(입력한 모든 값)
-		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String region = request.getParameter("region");
+		String tel = request.getParameter("tel");
+		String job = request.getParameter("job");
+		String name = request.getParameter("name");
 		// 2. 묶어주기(생성자에 매개변수로 넣어주기)
-		TbMemberDTO dto = new TbMemberDTO();
+		TbMemberDTO dto = new TbMemberDTO(id, pw, name, age, job, region, tel, null, name);
 		
 		// 3. dao함수 호출
 		TbMemberDAO dao = new TbMemberDAO();

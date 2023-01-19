@@ -24,7 +24,7 @@ public class Modify implements Command {
 		TbMemberDTO user = (TbMemberDTO)session.getAttribute("");	
 		String id = user.getId();
 		// 3. 데이터를 하나로 묶어주기
-		TbMemberDTO dto = new TbMemberDTO(id, id, id, null, id, id, id, null, id); // 수정할 데이터 넣기
+		TbMemberDTO dto = new TbMemberDTO(); // 수정할 데이터 넣기
 		// 4. dao
 		TbMemberDAO dao = new TbMemberDAO();
 		int row = dao.modify(dto);

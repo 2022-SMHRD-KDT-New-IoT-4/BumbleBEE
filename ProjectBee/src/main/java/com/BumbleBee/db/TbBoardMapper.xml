@@ -12,6 +12,7 @@
   	<update id="boardmodify" parameterType="TbMemberDTO">
   		update from tb_board
   		set board_title = #{boardTitle}, board_content = #{boardContent}
+  		where mb_id = #{id} and board_seq = #{boardSeq}
   	</update>
   	
   	<delete id="boarddelete" parameterType="TbMemberDTO">
@@ -22,6 +23,7 @@
   	<update id="boardlikes" parameterType="TbMemberDTO">
   		update from tb_board
   		set board_likes = #{boardLikes}
+  		where board_seq = #{boardSeq}
   	</update>
   	
   	<select id="boardselectall" resultType="TbMemberDTO">

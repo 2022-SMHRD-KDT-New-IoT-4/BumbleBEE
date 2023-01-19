@@ -7,7 +7,7 @@ public class TbMemberDTO {
 	    private String id; // 회원 아이디 
 	    private String pw; // 회원 패스워드 
 	    private String name; // 회원 이름 
-	    private Double age;  // 회원 나이 
+	    private int age;  // 회원 나이 
 	    private String job;  // 회원 직업 
 	    private String region;     // 회원 지역 
 	    private String tel; // 회원 전화번호 
@@ -15,7 +15,7 @@ public class TbMemberDTO {
 	    private String type; // 회원 유형 
 
 	    // 생성자
-	    public TbMemberDTO(String id, String pw, String name, Double age, String job, String region, String tel,
+	    public TbMemberDTO(String id, String pw, String name, int age, String job, String region, String tel,
 				Date joindate, String type) {
 			super();
 			this.id = id;
@@ -59,11 +59,11 @@ public class TbMemberDTO {
 	        this.name = name;
 	    }
 
-	    public Double getAge() {
+	    public int getAge() {
 	        return age;
 	    }
 
-	    public void setAge(Double age) {
+	    public void setAge(int age) {
 	        this.age = age;
 	    }
 
