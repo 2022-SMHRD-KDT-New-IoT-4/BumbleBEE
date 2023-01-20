@@ -9,21 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.BumbleBee.controller.Boarddelete;
-import com.BumbleBee.controller.Boardlikes;
-import com.BumbleBee.controller.Boardmodify;
-import com.BumbleBee.controller.Boardwrite;
+//import com.BumbleBee.controller.Boarddelete;
+//import com.BumbleBee.controller.Boardlikes;
+//import com.BumbleBee.controller.Boardmodify;
+//import com.BumbleBee.controller.Boardwrite;
 import com.BumbleBee.controller.Command;
+import com.BumbleBee.controller.GoMain;
 import com.BumbleBee.controller.Login;
-import com.BumbleBee.controller.Logout;
-import com.BumbleBee.controller.Modify;
+//import com.BumbleBee.controller.Login;
+//import com.BumbleBee.controller.Logout;
+//import com.BumbleBee.controller.Modify;
 import com.BumbleBee.controller.Register;
-import com.BumbleBee.controller.Select;
-import com.BumbleBee.controller.Withdrawal;
+//import com.BumbleBee.controller.Select;
+//import com.BumbleBee.controller.Withdrawal;
 
 
 // ---> 확장자 패턴 .do로 끝나는 모든 요청을 처리하겠다!
-@WebServlet("*.rgx")
+@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Command> map = null;
@@ -35,20 +37,20 @@ public class FrontController extends HttpServlet {
 		map = new HashMap<>();
 		// HashMap<Key로 지정할 자료형, Value로 들어갈 자료형>
 		// 1) HashMap에 데이터 추가하기 
-		map.put("Register.rgx", new Register());
-		map.put("Login.rgx", new Login());
-		map.put("Withdrawal.rgx", new Withdrawal());
-		map.put("Logout.rgx", new Logout());
-		map.put("Modify.rgx", new Modify());
-		map.put("Select.rgx", new Select());
+		map.put("Main.do", new GoMain());
+		map.put("Register.do", new Register());
+		map.put("Login.do", new Login());
+//		map.put("Withdrawal.do", new Withdrawal());
+//		map.put("Logout.do", new Logout());
+//		map.put("Modify.do", new Modify());
+//		map.put("Select.do", new Select());
 		
-//		map.put("GoUpdate.do", new GoUpdateProgram());  jsp에서 jsp로 이동하기 위해서는 servlet을 한번 거쳐서 이동해야함 --> 왜??
-//		map.put("Ajax.do", new AjaxTest());
+
 		
-		map.put("Boardwrite.rgx", new Boardwrite());
-		map.put("Boardmodify.rgx", new Boardmodify());
-		map.put("Boarddelte.rgx", new Boarddelete());
-		map.put("Boardlikes.rgx", new Boardlikes());
+//		map.put("Boardwrite.do", new Boardwrite());
+//		map.put("Boardmodify.do", new Boardmodify());
+//		map.put("Boarddelte.do", new Boarddelete());
+//		map.put("Boardlikes.do", new Boardlikes());
 		
 	}
 	

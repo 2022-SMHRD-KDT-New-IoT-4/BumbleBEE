@@ -7,15 +7,22 @@
 
   <insert id="register" parameterType="TbMemberDTO">
   		insert into tb_member
-  		values(#{id},#{pw},#{name},#{age},#{job},#{region},#{tel},#{sysdate},#{type})
+  		values(#{id},#{pw},#{name},#{age},#{job},#{region},#{tel},sysdate,'N')
   </insert>
   
   <select id="login" parameterType="TbMemberDTO" resultType="TbMemberDTO">
-  		select * from tb_member where mb_id = #{id} and mb_pw = #{pw}
+  		select * from tb_member 
+  		where mb_id = #{id} and mb_pw = #{pw}
   </select>
-  
+
+
+
+
+
+
+
   <update id="modify" parameterType="TbMemberDTO">
-  		update tb_member 
+  		update tb_member
   		set mb_pw = #{pw}, mb_name = #{name}, mb_age = #{age}, mb_job = #{job}, mb_region = #{region}, mb_tel = {tel}
   		where mb_id = #{id}
   </update>

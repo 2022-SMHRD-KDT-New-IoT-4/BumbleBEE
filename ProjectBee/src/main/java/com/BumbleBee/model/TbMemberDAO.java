@@ -24,15 +24,15 @@ public class TbMemberDAO {
 	}
 	public TbMemberDTO login(TbMemberDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		TbMemberDTO userinfo = null;
+		TbMemberDTO user = null;
 		try {
-			userinfo = session.selectOne("com.BumbleBee.model.TbMemberDAO.login", dto);
+			user = session.selectOne("com.BumbleBee.model.TbMemberDAO.login", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return userinfo;
+		return user;
 	}
 	public int modify(TbMemberDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);

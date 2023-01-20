@@ -15,7 +15,7 @@ public class TbMemberDTO {
 	    private String type; // 회원 유형 
 
 	    // 생성자
-	    public TbMemberDTO(String id, String pw, String name, int age, String job, String region, String tel, String type) {
+	    public TbMemberDTO(String id, String pw, String name, int age, String job, String region, String tel) {
 			super();
 			this.id = id;
 			this.pw = pw;
@@ -24,7 +24,6 @@ public class TbMemberDTO {
 			this.job = job;
 			this.region = region;
 			this.tel = tel;
-			this.type = type;
 		}
 		
 	    public TbMemberDTO() {

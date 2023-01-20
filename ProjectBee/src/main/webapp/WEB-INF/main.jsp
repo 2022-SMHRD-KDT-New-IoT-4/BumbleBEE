@@ -40,16 +40,16 @@
 					<nav id="menu">	
 						<ul class="links">
 							<li><h5>로그인</h5></li>
-								<form action="Login.rgx" method="post">
-									<li><input type="text"  placeholder="Email을 입력하세요" name = "id"></li>
+								<form action="Login.do" method="post">
+									<li><input type="text"  placeholder="id 입력하세요" name = "id"></li>
 									<li><input type="password"  placeholder="PW를 입력하세요" name = "pw"></li>
 									<li><input type="submit" value="LogIn" class="button fit"></li>
 								</form>
 						</ul>
 						<ul class="actions vertical">
 							<li><h5>회원가입</h5></li>
-								<form action="Register.rgx" method="post">
-									<li><input type="text"  placeholder="Email을 입력하세요" name = "id"></li>
+								<form action="Register.do" method="post">
+									<li><input type="text"  placeholder="id 입력하세요" name = "id"></li>
 									<li><input type="password"  placeholder="PW를 입력하세요" name = "pw"></li>
 									<li><input type="text"  placeholder="이름를 입력하세요" name = "name"></li>
 									<li><input type="text"  placeholder="나이 입력하세요" name = "age"></li>

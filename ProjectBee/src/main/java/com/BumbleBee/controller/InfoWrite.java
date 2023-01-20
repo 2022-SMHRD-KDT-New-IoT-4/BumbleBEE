@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.json.JSONParser;
 
 import com.BumbleBee.model.SensorInfo;
-import com.BumbleBee.model.TbCommentDAO;
-import com.BumbleBee.model.TbCommentDTO;
+//import com.BumbleBee.model.TbCommentDAO;
+//import com.BumbleBee.model.TbCommentDTO;
 import com.google.gson.Gson;
 
 /**
