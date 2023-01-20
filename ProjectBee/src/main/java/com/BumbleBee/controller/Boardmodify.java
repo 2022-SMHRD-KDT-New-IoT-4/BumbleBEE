@@ -8,35 +8,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.BumbleBee.model.TbMemberDAO;
+import com.BumbleBee.model.TbBoardDAO;
+import com.BumbleBee.model.TbBoardDTO;
 import com.BumbleBee.model.TbMemberDTO;
 
-
-public class Modify implements Command {
+public class Boardmodify implements Command {
 	private static final long serialVersionUID = 1L;
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1. 수정할 데이터 가져오기
-		
-		// 2. 현재 접속한 회원의 아이디 가져오기
 		HttpSession session = request.getSession();
 		TbMemberDTO user = (TbMemberDTO)session.getAttribute("user");	
 		String id = user.getMbId();
-		// 3. 데이터를 하나로 묶어주기
-		TbMemberDTO dto = new TbMemberDTO(); // 수정할 데이터 넣기
-		// 4. dao
-		TbMemberDAO dao = new TbMemberDAO();
-		int row = dao.modify(dto);
+		
+		// 1. 수정할 데이터 가져오기
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		// 2. dto
+		TbBoardDTO dto = new TbBoardDTO();
+		dto.setBoardTitle(title);
+		dto.setBoardContent(content);
+		dto.setMbId(id);
+		
+		TbBoardDAO dao = new TbBoardDAO();
+		int row = dao.boardModify(dto);
 		if(row > 0) {
-			// 성공
-			return "main.jsp";
+			// 수정 성공 수정한 게시글로 이동? or 게시글목록으로 이동
 		}
 		else {
-			// 실패
-			return "main.jsp";
+			// 수정 실패 시 사이트 이동 없음
 		}
 		
+		return null;
 	}
 
 }

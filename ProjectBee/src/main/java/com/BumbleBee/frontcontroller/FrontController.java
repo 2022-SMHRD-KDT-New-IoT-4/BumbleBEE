@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.BumbleBee.controller.BoardGomodify;
 import com.BumbleBee.controller.Boardgowrite;
 import com.BumbleBee.controller.Boardmain;
 import com.BumbleBee.controller.Boardwrite;
@@ -52,6 +53,7 @@ public class FrontController extends HttpServlet {
 		map.put("Boardmain.do", new Boardmain());
 		map.put("Boardgowrite.do", new Boardgowrite());
 		map.put("Boardwrite.do", new Boardwrite());
+		map.put("BoardGomodify.do", new BoardGomodify());
 //		map.put("Boardmodify.do", new Boardmodify());
 //		map.put("Boarddelte.do", new Boarddelete());
 //		map.put("Boardlikes.do", new Boardlikes());
@@ -95,7 +97,9 @@ public class FrontController extends HttpServlet {
 		String rdPath = com.execute(request, response);
 		if(rdPath == null) {
 			//  아무런 일도안함 -> Ajax 비동기통신방식(페이지 이동 X)
-		} else {
+		} else if(rdPath.contains("redirect:/")){
+			response.sendRedirect(rdPath.substring("redirect:/".length()));
+		}else {
 			// 4. 페이지 응답 돌려주기
 			request.getRequestDispatcher("WEB-INF/" + rdPath).forward(request, response);
 		}

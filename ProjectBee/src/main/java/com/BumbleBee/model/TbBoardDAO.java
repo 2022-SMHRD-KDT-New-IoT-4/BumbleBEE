@@ -20,7 +20,7 @@ public class TbBoardDAO {
 		} finally {
 			session.close();
 		}
-		return 0;
+		return row;
 	}
 
 	public int boardModify(TbBoardDTO dto) {
@@ -67,7 +67,7 @@ public class TbBoardDAO {
 	}
 
 	public List<TbBoardDTO> boardselectAll() {
-		List list = null;
+		List<TbBoardDTO> list = null;
 		SqlSession session = sqlSessionFactory.openSession(true);
 		try {
 			list = session.selectList("com.BumbleBee.model.TbBoardDAO.boardselectall");
@@ -78,6 +78,6 @@ public class TbBoardDAO {
 		}
 		
 		
-		return null;
+		return list;
 	}
 }
