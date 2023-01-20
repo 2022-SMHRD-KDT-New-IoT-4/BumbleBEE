@@ -5,7 +5,7 @@
   
 <mapper namespace="com.BumbleBee.model.TbBoardDAO" > 
 	<insert id="boardwrite" parameterType="TbBoardDTO">
-		insert into tbboard 
+		insert into tbboard(boardtitle, boardcontent, boardfile, boarddt, mbid, boardviews, boardlikes)
 		values(#{boardTitle}, #{boardContent}, 'no file', sysdate ,#{mbId}, 0, 0)
 	</insert>
   	

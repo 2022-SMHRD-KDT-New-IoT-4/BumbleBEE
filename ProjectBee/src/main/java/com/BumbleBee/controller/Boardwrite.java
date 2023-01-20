@@ -33,12 +33,14 @@ public class Boardwrite implements Command {
 		TbBoardDAO dao = new TbBoardDAO();
 		int row = dao.boardWrite(dto);
 		if(row > 0) {
+			return "Board_List.jsp";
 			// 글 작성 성공 - 데이터 가지고갈 필요없이 바로 게시판목록 화면으로 보내기
 		}
 		else {
+			return "Board_List.jsp";
 			// 작성 실패 
 		}
-		return null;
+		
 	}
 
 }
