@@ -34,7 +34,7 @@ public class Modify implements Command {
 		else {
 			// 실패
 		}
-		return null;
+		return "update.jsp";
 	}
 
 }

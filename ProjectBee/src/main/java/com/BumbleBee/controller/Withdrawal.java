@@ -7,41 +7,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import com.BumbleBee.model.TbMemberDAO;
 import com.BumbleBee.model.TbMemberDTO;
 
-
-public class Login implements Command {
+public class Withdrawal implements Command {
 	private static final long serialVersionUID = 1L;
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1. 데이터 받아오기(id, pw)
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		
-		// 2. 묶어주기
-		TbMemberDTO dto = new TbMemberDTO();
+		HttpSession session = request.getSession();
+		TbMemberDTO user = (TbMemberDTO)session.getAttribute("user");	
+		String id = user.getMbId();
+		TbMemberDTO dto = new TbMemberDTO(); // 수정할 데이터 넣기
 		dto.setMbId(id);
-		dto.setMbPw(pw);
+		// 4. dao
 		TbMemberDAO dao = new TbMemberDAO();
+		int row = dao.withdrawal(dto);
 		
-		TbMemberDTO user =  dao.login(dto);
-		
-		if(user != null) {
-			// 로그인 성공
-			// session영역에 정보 저장
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			System.out.println("성공" + user.getMbId());
+		if(row > 0) {
+			session.removeAttribute("user");
+			
 			return "main.jsp";
+			// 회원탈퇴 성공
 		}
 		else {
-			// 로그인 실패
-			System.out.println("실패");
 			return "main.jsp";
+			// 회원탈퇴 실패
 		}
 		
 	}

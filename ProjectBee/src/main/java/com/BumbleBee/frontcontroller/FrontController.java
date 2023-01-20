@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.BumbleBee.controller.Boardgowrite;
+import com.BumbleBee.controller.Boardmain;
+import com.BumbleBee.controller.Boardwrite;
 //import com.BumbleBee.controller.Boarddelete;
 //import com.BumbleBee.controller.Boardlikes;
 //import com.BumbleBee.controller.Boardmodify;
-//import com.BumbleBee.controller.Boardwrite;
 import com.BumbleBee.controller.Command;
 import com.BumbleBee.controller.GoMain;
 import com.BumbleBee.controller.Login;
 import com.BumbleBee.controller.Modify;
-//import com.BumbleBee.controller.Login;
-//import com.BumbleBee.controller.Logout;
-//import com.BumbleBee.controller.Modify;
+import com.BumbleBee.controller.Logout;
 import com.BumbleBee.controller.Register;
 import com.BumbleBee.controller.Select;
-//import com.BumbleBee.controller.Select;
-//import com.BumbleBee.controller.Withdrawal;
+import com.BumbleBee.controller.Withdrawal;
 
 
 // ---> 확장자 패턴 .do로 끝나는 모든 요청을 처리하겠다!
@@ -42,14 +41,15 @@ public class FrontController extends HttpServlet {
 		map.put("Main.do", new GoMain());
 		map.put("Register.do", new Register());
 		map.put("Login.do", new Login());
-//		map.put("Withdrawal.do", new Withdrawal());
-//		map.put("Logout.do", new Logout());
+		map.put("Withdrawal.do", new Withdrawal());
+		map.put("Logout.do", new Logout());
 		map.put("Modify.do", new Modify());
 		map.put("Select.do", new Select());
+		map.put("Boardmain.do", new Boardmain());
 		
 
-		
-//		map.put("Boardwrite.do", new Boardwrite());
+		map.put("Boardgowrite.do", new Boardgowrite());
+		map.put("Boardwrite.do", new Boardwrite());
 //		map.put("Boardmodify.do", new Boardmodify());
 //		map.put("Boarddelte.do", new Boarddelete());
 //		map.put("Boardlikes.do", new Boardlikes());
