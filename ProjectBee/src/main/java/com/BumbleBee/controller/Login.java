@@ -24,8 +24,8 @@ public class Login implements Command {
 		
 		// 2. 묶어주기
 		TbMemberDTO dto = new TbMemberDTO();
-		dto.setId(id);
-		dto.setPw(pw);
+		dto.setMbId(id);
+		dto.setMbPw(pw);
 		TbMemberDAO dao = new TbMemberDAO();
 		
 		TbMemberDTO user =  dao.login(dto);

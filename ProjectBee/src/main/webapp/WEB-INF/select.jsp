@@ -17,7 +17,7 @@
 	</style>
 	<body style="text-align: center;">
 		<%
-			List<TbMemberDTO> userinfo = (List)request.getAttribute("userinfo");
+			List<TbMemberDTO> user = (List)request.getAttribute("list");
 		%>
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -31,9 +31,9 @@
 								<td>Address</td>							
 							</tr>
 							<!-- 2.모든 회원의 이메일(email),전화번호(tel),주소(address)를 출력하시오. -->
-							<% for(TbMemberDTO dto : userinfo) { %>
+							<% for(TbMemberDTO dto : user) { %>
 								<tr>
-									<td><%=dto.getId() %></td>
+									<td><%=dto.getMbId() %></td>
 								</tr>
 						<% 	} %>
 						</table>

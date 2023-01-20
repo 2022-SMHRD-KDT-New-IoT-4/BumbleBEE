@@ -16,10 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.BumbleBee.controller.Command;
 import com.BumbleBee.controller.GoMain;
 import com.BumbleBee.controller.Login;
+import com.BumbleBee.controller.Modify;
 //import com.BumbleBee.controller.Login;
 //import com.BumbleBee.controller.Logout;
 //import com.BumbleBee.controller.Modify;
 import com.BumbleBee.controller.Register;
+import com.BumbleBee.controller.Select;
 //import com.BumbleBee.controller.Select;
 //import com.BumbleBee.controller.Withdrawal;
 
@@ -42,8 +44,8 @@ public class FrontController extends HttpServlet {
 		map.put("Login.do", new Login());
 //		map.put("Withdrawal.do", new Withdrawal());
 //		map.put("Logout.do", new Logout());
-//		map.put("Modify.do", new Modify());
-//		map.put("Select.do", new Select());
+		map.put("Modify.do", new Modify());
+		map.put("Select.do", new Select());
 		
 
 		

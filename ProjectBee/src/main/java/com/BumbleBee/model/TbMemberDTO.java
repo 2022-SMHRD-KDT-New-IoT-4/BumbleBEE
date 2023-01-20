@@ -2,122 +2,143 @@ package com.BumbleBee.model;
 
 import java.sql.Date;
 
-public class TbMemberDTO {
-		// 회원정보 
-	    private String id; // 회원 아이디 
-	    private String pw; // 회원 패스워드 
-	    private String name; // 회원 이름 
-	    private int age;  // 회원 나이 
-	    private String job;  // 회원 직업 
-	    private String region;     // 회원 지역 
-	    private String tel; // 회원 전화번호 
-	    private Date joindate; // 회원 가입일자 
-	    private String type; // 회원 유형 
+public class TbMemberDTO {// 회원정보 
 
-	    // 생성자
-	    public TbMemberDTO(String id, String pw, String name, int age, String job, String region, String tel) {
+	    // 회원 아이디 
+	    
+
+
+
+
+		private String mbId;
+		// 회원 패스워드 
+	    private String mbPw;
+
+	    // 회원 이름 
+	    private String mbName;
+
+	    // 회원 나이 
+	    private int mbAge;
+
+	    // 회원 직업 
+	    private String mbJob;
+
+	    // 회원 지역 
+	    private String mbRegion;
+
+	    // 회원 전화번호 
+	    private String mbTel;
+
+	    // 회원 가입일자 
+	    private Date mbJoindate;
+
+	    // 회원 유형 
+	    private String mbType;
+
+
+	    public TbMemberDTO(String mbId, String mbPw, String mbName, int mbAge, String mbJob, String mbRegion,
+				String mbTel) {
 			super();
-			this.id = id;
-			this.pw = pw;
-			this.name = name;
-			this.age = age;
-			this.job = job;
-			this.region = region;
-			this.tel = tel;
+			this.mbId = mbId;
+			this.mbPw = mbPw;
+			this.mbName = mbName;
+			this.mbAge = mbAge;
+			this.mbJob = mbJob;
+			this.mbRegion = mbRegion;
+			this.mbTel = mbTel;
+			
 		}
-		
-	    public TbMemberDTO() {
-	    	
-	    }
-	    
 	    
 
-	    public String getId() {
-	        return id;
+		public TbMemberDTO() {
+			super();
+		}
+	    
+	    
+	    public String getMbId() {
+	        return mbId;
 	    }
 
-	    public void setId(String id) {
-	        this.id = id;
+	    public void setMbId(String mbId) {
+	        this.mbId = mbId;
 	    }
 
-	    public String getPw() {
-	        return pw;
+	    public String getMbPw() {
+	        return mbPw;
 	    }
 
-	    public void setPw(String pw) {
-	        this.pw = pw;
+	    public void setMbPw(String mbPw) {
+	        this.mbPw = mbPw;
 	    }
 
-	    public String getName() {
-	        return name;
+	    public String getMbName() {
+	        return mbName;
 	    }
 
-	    public void setName(String name) {
-	        this.name = name;
+	    public void setMbName(String mbName) {
+	        this.mbName = mbName;
 	    }
 
-	    public int getAge() {
-	        return age;
+	    public int getMbAge() {
+	        return mbAge;
 	    }
 
-	    public void setAge(int age) {
-	        this.age = age;
+	    public void setMbAge(int mbAge) {
+	        this.mbAge = mbAge;
 	    }
 
-	    public String getJob() {
-	        return job;
+	    public String getMbJob() {
+	        return mbJob;
 	    }
 
-	    public void setJob(String job) {
-	        this.job = job;
+	    public void setMbJob(String mbJob) {
+	        this.mbJob = mbJob;
 	    }
 
-	    public String getRegion() {
-	        return region;
+	    public String getMbRegion() {
+	        return mbRegion;
 	    }
 
-	    public void setRegion(String region) {
-	        this.region = region;
+	    public void setMbRegion(String mbRegion) {
+	        this.mbRegion = mbRegion;
 	    }
 
-	    public String getTel() {
-	        return tel;
+	    public String getMbTel() {
+	        return mbTel;
 	    }
 
-	    public void setTel(String tel) {
-	        this.tel = tel;
+	    public void setMbTel(String mbTel) {
+	        this.mbTel = mbTel;
 	    }
 
-	    public Date getJoindate() {
-	        return joindate;
+	    public Date getMbJoindate() {
+	        return mbJoindate;
 	    }
 
-	    public void setJoindate(Date joindate) {
-	        this.joindate = joindate;
+	    public void setMbJoindate(Date mbJoindate) {
+	        this.mbJoindate = mbJoindate;
 	    }
 
-	    public String getType() {
-	        return type;
+	    public String getMbType() {
+	        return mbType;
 	    }
 
-	    public void setType(String type) {
-	        this.type = type;
+	    public void setMbType(String mbType) {
+	        this.mbType = mbType;
 	    }
 
-	    // TbMeer 모델 복사
-	    public void CopyData(TbMemberDTO param)
-	    {
-	        this.id = param.getId();
-	        this.pw = param.getPw();
-	        this.name = param.getName();
-	        this.age = param.getAge();
-	        this.job = param.getJob();
-	        this.region = param.getRegion();
-	        this.tel = param.getTel();
-	        this.joindate = param.getJoindate();
-	        this.type = param.getType();
-	    }
-
-		
+	    // TbMember 모델 복사
+//	    public void CopyData(TbMemberDTO param)
+//	    {
+//	        this.mbId = param.getMbId();
+//	        this.mbPw = param.getMbPw();
+//	        this.mbName = param.getMbName();
+//	        this.mbAge = param.getMbAge();
+//	        this.mbJob = param.getMbJob();
+//	        this.mbRegion = param.getMbRegion();
+//	        this.mbTel = param.getMbTel();
+//	        this.mbJoindate = param.getMbJoindate();
+//	        this.mbType = param.getMbType();
+//	    }
 	}
 

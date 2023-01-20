@@ -22,10 +22,10 @@
 						<nav>
 						
 						<%	if(user != null) { 
-								if(user.getId().equals("admin")) { %>
+								if(user.getMbId().equals("admin")) { %>
 									<a href= Select.do>회원관리</a>
 								<%} else { %>
-									<a href= GoUpdate.do>개인정보수정</a>
+									<a href= Modify.do>개인정보수정</a>
 								<%} %>
 								<a href= Logout.do>로그아웃</a>
 						<% 	} else { %>
@@ -59,6 +59,7 @@
 									<li><input type="submit" value="JoinUs" class="button fit"></li>
 								</form>
 						</ul>
+						<a href= Select.do>회원관리</a>
 					</nav>			
 				<!-- Banner -->
 					<section id="banner" class="major">
@@ -68,7 +69,7 @@
 							<%
 								if(user != null) {
 									// 로그인 성공했다면
-									out.print("<h1>" + user.getId() + "님 환영합니다!</h1>");
+									out.print("<h1>" + user.getMbId() + "님 환영합니다!</h1>");
 								}
 								else {
 									// 로그인 실패했다면
@@ -195,7 +196,7 @@
 										<h3>Email</h3>
 										<a href="#">
 											<% if(user != null) {
-													out.print(user.getId());
+													out.print(user.getMbId());
 											} %>
 										</a>
 										<!-- 로그인 한 사용자의 이메일을 출력하시오 -->
@@ -206,7 +207,7 @@
 										<span class="icon alt fa-phone"></span>
 										<h3>Phone</h3>
 										<span><% if(user != null) {
-													out.print(user.getTel());
+													out.print(user.getMbTel());
 											} %></span>
 										<!-- 로그인 한 사용자의 전화번호를 출력하시오 -->
 									</div>
@@ -216,7 +217,7 @@
 										<span class="icon alt fa-home"></span>
 										<h3>Address</h3>
 										<span><% if(user != null) {
-													out.print(user.getRegion());
+													out.print(user.getMbRegion());
 											} %></span>
 										<!-- 로그인 한 사용자의 집주소를 출력하시오 -->
 									</div>
