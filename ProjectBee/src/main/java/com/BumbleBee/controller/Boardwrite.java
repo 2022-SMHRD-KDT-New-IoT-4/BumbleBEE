@@ -20,6 +20,7 @@ public class Boardwrite implements Command {
 		HttpSession session = request.getSession();
 		TbMemberDTO user = (TbMemberDTO)session.getAttribute("user");	// 현재 세션에있는 유저의 아이디 가져오기
 		String id = user.getMbId();
+		System.out.println(id);
 		// 1. 데이터 가져오기 (글제목, 글내용, 작성자 , 등등등)
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");

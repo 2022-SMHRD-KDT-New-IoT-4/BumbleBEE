@@ -25,7 +25,7 @@
 								if(user.getMbId().equals("admin")) { %>
 									<a href= Select.do>회원관리</a>
 								<%} else { %>
-									<a href= Modify.do>개인정보수정</a>
+									<a href= GoModify.do>개인정보수정</a>
 								<%} %>
 								<a href= Boardmain.do>게시판 이동</a>
 								<a href= Logout.do>로그아웃</a>

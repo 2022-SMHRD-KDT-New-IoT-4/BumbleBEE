@@ -87,8 +87,8 @@ public class TbBoardDTO {
 		return mbId;
 	}
 
-	public void setMbId(String id) {
-		this.mbId = mbId;
+	public void setMbId(String mbId) {
+		this.mbId =  mbId;
 	}
 
 	public int getBoardViews() {

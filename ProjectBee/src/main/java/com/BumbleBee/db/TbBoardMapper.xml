@@ -4,29 +4,29 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.BumbleBee.model.TbBoardDAO" > 
-	<insert id="boardwrite" parameterType="TbMemberDTO">
+	<insert id="boardwrite" parameterType="TbBoardDTO">
 		insert into tbboard 
-		values(#{boardTitle}, #{boardContent}, 'no file', sysdate ,#{mbId}, #{0}, #{0})
+		values(#{boardTitle}, #{boardContent}, 'no file', sysdate ,#{mbId}, 0, 0)
 	</insert>
   	
-  	<update id="boardmodify" parameterType="TbMemberDTO">
+  	<update id="boardmodify" parameterType="TbBoardDTO">
   		update from tb_board
   		set boardtitle = #{boardTitle}, boardcontent = #{boardContent}
   		where mbid = #{id} and boardseq = #{boardSeq}
   	</update>
   	
-  	<delete id="boarddelete" parameterType="TbMemberDTO">
+  	<delete id="boarddelete" parameterType="TbBoardDTO">
   		delete from tbboard
   		where board_seq = #{boardSeq}
   	</delete>
   	
-  	<update id="boardlikes" parameterType="TbMemberDTO">
+  	<update id="boardlikes" parameterType="TbBoardDTO">
   		update from tbboard
   		set boardlikes = #{boardLikes}
   		where boardseq = #{boardSeq}
   	</update>
   	
-  	<select id="boardselectall" resultType="TbMemberDTO">
+  	<select id="boardselectall" resultType="TbBoardDTO">
   		select * from tbboard
   	</select>
   	

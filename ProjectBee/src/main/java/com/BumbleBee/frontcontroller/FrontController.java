@@ -17,6 +17,7 @@ import com.BumbleBee.controller.Boardwrite;
 //import com.BumbleBee.controller.Boardmodify;
 import com.BumbleBee.controller.Command;
 import com.BumbleBee.controller.GoMain;
+import com.BumbleBee.controller.GoModify;
 import com.BumbleBee.controller.Login;
 import com.BumbleBee.controller.Modify;
 import com.BumbleBee.controller.Logout;
@@ -43,11 +44,12 @@ public class FrontController extends HttpServlet {
 		map.put("Login.do", new Login());
 		map.put("Withdrawal.do", new Withdrawal());
 		map.put("Logout.do", new Logout());
+		map.put("GoModify.do", new GoModify());
 		map.put("Modify.do", new Modify());
 		map.put("Select.do", new Select());
-		map.put("Boardmain.do", new Boardmain());
 		
 
+		map.put("Boardmain.do", new Boardmain());
 		map.put("Boardgowrite.do", new Boardgowrite());
 		map.put("Boardwrite.do", new Boardwrite());
 //		map.put("Boardmodify.do", new Boardmodify());

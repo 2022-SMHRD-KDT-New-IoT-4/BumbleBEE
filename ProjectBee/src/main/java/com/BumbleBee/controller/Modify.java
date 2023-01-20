@@ -21,7 +21,7 @@ public class Modify implements Command {
 		
 		// 2. 현재 접속한 회원의 아이디 가져오기
 		HttpSession session = request.getSession();
-		TbMemberDTO user = (TbMemberDTO)session.getAttribute("");	
+		TbMemberDTO user = (TbMemberDTO)session.getAttribute("user");	
 		String id = user.getMbId();
 		// 3. 데이터를 하나로 묶어주기
 		TbMemberDTO dto = new TbMemberDTO(); // 수정할 데이터 넣기
