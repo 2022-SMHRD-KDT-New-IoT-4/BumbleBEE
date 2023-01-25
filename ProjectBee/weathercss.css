@@ -1,0 +1,21 @@
+
+
+#iconsContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 100x;    
+  
+}
+
+.icons{
+   
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+ 
+}
