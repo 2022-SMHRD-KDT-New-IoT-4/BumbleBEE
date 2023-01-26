@@ -12,6 +12,7 @@
 	<!-- MessageMapper파일에서 사용할 type들의 별명을 지정해주는 공간 -->
 		<typeAlias type="com.BumbleBee.model.TbMemberDTO" alias="TbMemberDTO"/>
 		<typeAlias type="com.BumbleBee.model.TbBoardDTO" alias="TbBoardDTO"/>
+		<typeAlias type="com.BumbleBee.model.TbBeehiveDTO" alias="TbBeehiveDTO"/>
 	</typeAliases>
 
 
@@ -53,6 +54,7 @@
     
     <mapper resource="com/BumbleBee/db/TbMemberMapper.xml"/>
     <mapper resource="com/BumbleBee/db/TbBoardMapper.xml"/>
+    <mapper resource="com/BumbleBee/db/TbBeehiveMapper.xml"/>
     
   </mappers>
   

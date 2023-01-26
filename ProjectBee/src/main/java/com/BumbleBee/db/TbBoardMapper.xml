@@ -10,14 +10,14 @@
 	</insert>
   	
   	<update id="boardmodify" parameterType="TbBoardDTO">
-  		update from tb_board
+  		update from tbboard
   		set boardtitle = #{boardTitle}, boardcontent = #{boardContent}
   		where mbid = #{id} and boardseq = #{boardSeq}
   	</update>
   	
   	<delete id="boarddelete" parameterType="TbBoardDTO">
   		delete from tbboard
-  		where board_seq = #{boardSeq}
+  		where boardseq = #{boardSeq}
   	</delete>
   	
   	<update id="boardlikes" parameterType="TbBoardDTO">
@@ -27,7 +27,7 @@
   	</update>
   	
   	<select id="boardselectall" resultType="TbBoardDTO">
-  		select * from tbboard
+  		select * from tbboard order by boardseq
   	</select>
   	
 </mapper>

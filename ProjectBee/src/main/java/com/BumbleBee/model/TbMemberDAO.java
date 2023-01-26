@@ -44,6 +44,7 @@ public class TbMemberDAO {
 		} finally {
 			session.close();
 		}
+		
 		return row;
 	}
 	public List<TbMemberDTO> selectAll() {

@@ -28,6 +28,7 @@
 									<a href= GoModify.do>개인정보수정</a>
 								<%} %>
 								<a href= Boardmain.do>게시판 이동</a>
+								<a href= Beevalue.do>벌 수정</a>
 								<a href= Logout.do>로그아웃</a>
 								<a href= Withdrawal.do>계정탈퇴</a>
 						<% 	} else { %>

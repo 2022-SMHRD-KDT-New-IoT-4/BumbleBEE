@@ -15,20 +15,16 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.json.JSONParser;
 
 import com.BumbleBee.model.SensorInfo;
+import com.BumbleBee.model.TbBeehiveDAO;
+import com.BumbleBee.model.TbBeehiveDTO;
 //import com.BumbleBee.model.TbCommentDAO;
 //import com.BumbleBee.model.TbCommentDTO;
 import com.google.gson.Gson;
 
-/**
- * Servlet implementation class Commentdelete
- */
 @WebServlet("/api/info")
 public class InfoWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 아두이노 요청을 읽어오는 구간
 		String bodyJson = "";
@@ -53,8 +49,24 @@ public class InfoWrite extends HttpServlet {
  
         // 읽어온 데이터를 json으로 파싱하는 구간
     	Gson gson = new Gson();    	
+//    	System.out.println(stringBuilder.toString());
     	SensorInfo info = gson.fromJson(stringBuilder.toString(), SensorInfo.class);
-    			    	
-    	System.out.println("Humidity: " + info.getHumidity() +  ", Temperature: " + info.getTemperature() + ", Weight: " + info.getWeight());
+    	TbBeehiveDTO dto = new TbBeehiveDTO();
+    	dto.setBhHumid(info.getHumidity());
+    	dto.setBhTemp(info.getTemperature());
+    	dto.setBhWeight(info.getWeight());
+    	dto.setOwnerId("1");
+    	dto.setBhSeq(1);
+    	TbBeehiveDAO dao = new TbBeehiveDAO();
+    	int row = dao.modify(dto);
+    	if(row > 0) {
+    		System.out.println("Humidity: " + dto.getBhHumid() +  ", Temperature: " + dto.getBhTemp() + ", Weight: " + dto.getBhWeight());
+    	}
+    	else {
+    		System.out.println("실패: " + row);
+    	}
+    	
+    	
+    	
 	}
 }

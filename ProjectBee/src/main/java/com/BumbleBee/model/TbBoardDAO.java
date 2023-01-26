@@ -33,7 +33,8 @@ public class TbBoardDAO {
 		} finally {
 			session.close();
 		}
-		return 0;
+
+		return row;
 	}
 
 	public int boardDelete(TbBoardDTO dto) {
@@ -46,7 +47,7 @@ public class TbBoardDAO {
 		} finally {
 			session.close();
 		}
-		return 0;
+		return row;
 	}
 
 	public void boardAddfile(TbBoardDTO dto) {

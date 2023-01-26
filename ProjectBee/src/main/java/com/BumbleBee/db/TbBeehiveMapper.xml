@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.BumbleBee.model.TbBeehiveDAO" > 
+	
+	<update id="modify" parameterType="TbBeehiveDTO">
+		update tbbeehive 
+		SET BHWEIGHT = #{bhWeight}, bhtemp = #{bhTemp}, bhhumid = #{bhHumid}
+		where BhSeq = #{bhSeq}
+	</update>
+	
+  
+  
+</mapper>

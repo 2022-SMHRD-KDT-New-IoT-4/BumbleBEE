@@ -4,13 +4,14 @@ public class SensorInfo {
     private double temperature;
     private double humidity;
     private double weight;
+    private int water;
     
-    
-	public SensorInfo(double temperature, double humidity, double weight) {
+	public SensorInfo(double temperature, double humidity, double weight, int water) {
 		super();
 		this.temperature = temperature;
 		this.humidity = humidity;
 		this.weight = weight;
+		this.water = water;
 	}
 	
 	public double getTemperature() {
@@ -28,8 +29,14 @@ public class SensorInfo {
 	public double getWeight() {
 		return weight;
 	}
-	public void setWeight(double weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
+	}
+	public double getWater() {
+		return water;
+	}
+	public void setWater(int water) {
+		this.water = water;
 	}
     
 }
