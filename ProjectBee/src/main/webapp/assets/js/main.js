@@ -1,352 +1,320 @@
 /*
-	Forty by HTML5 UP
+	Astral by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function($) {
+(function ($) {
 
-	skel.breakpoints({
-		xlarge: '(max-width: 1680px)',
-		large: '(max-width: 1280px)',
-		medium: '(max-width: 980px)',
-		small: '(max-width: 736px)',
-		xsmall: '(max-width: 480px)',
-		xxsmall: '(max-width: 360px)'
+	var $window = $(window),
+		$body = $('body'),
+		$wrapper = $('#wrapper'),
+		$main = $('#main'),
+		$panels = $main.children('.panel'),
+		$nav = $('#nav'), $nav_links = $nav.children('a');
+
+	// Breakpoints.
+	breakpoints({
+		xlarge: ['1281px', '1680px'],
+		large: ['981px', '1280px'],
+		medium: ['737px', '980px'],
+		small: ['361px', '736px'],
+		xsmall: [null, '360px']
 	});
 
-	/**
-	 * Applies parallax scrolling to an element's background image.
-	 * @return {jQuery} jQuery object.
-	 */
-	$.fn._parallax = (skel.vars.browser == 'ie' || skel.vars.browser == 'edge' || skel.vars.mobile) ? function() { return $(this) } : function(intensity) {
+	// Play initial animations on page load.
+	$window.on('load', function () {
+		window.setTimeout(function () {
+			$body.removeClass('is-preload');
+		}, 100);
+	});
 
-		var	$window = $(window),
-			$this = $(this);
+	// Nav.
+	$nav_links
+		.on('click', function (event) {
 
-		if (this.length == 0 || intensity === 0)
-			return $this;
+			var href = $(this).attr('href');
 
-		if (this.length > 1) {
+			// Not a panel link? Bail.
+			if (href.charAt(0) != '#'
+				|| $panels.filter(href).length == 0)
+				return;
 
-			for (var i=0; i < this.length; i++)
-				$(this[i])._parallax(intensity);
+			// Prevent default.
+			event.preventDefault();
+			event.stopPropagation();
 
-			return $this;
-
-		}
-
-		if (!intensity)
-			intensity = 0.25;
-
-		$this.each(function() {
-
-			var $t = $(this),
-				on, off;
-
-			on = function() {
-
-				$t.css('background-position', 'center 100%, center 100%, center 0px');
-
-				$window
-					.on('scroll._parallax', function() {
-
-						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
-
-						$t.css('background-position', 'center ' + (pos * (-1 * intensity)) + 'px');
-
-					});
-
-			};
-
-			off = function() {
-
-				$t
-					.css('background-position', '');
-
-				$window
-					.off('scroll._parallax');
-
-			};
-
-			skel.on('change', function() {
-
-				if (skel.breakpoint('medium').active)
-					(off)();
-				else
-					(on)();
-
-			});
+			// Change panels.
+			if (window.location.hash != href)
+				window.location.hash = href;
 
 		});
 
-		$window
-			.off('load._parallax resize._parallax')
-			.on('load._parallax resize._parallax', function() {
-				$window.trigger('scroll');
-			});
+	// Panels.
 
-		return $(this);
+	// Initialize.
+	(function () {
 
-	};
+		var $panel, $link;
 
-	$(function() {
+		// Get panel, link.
+		if (window.location.hash) {
 
-		var	$window = $(window),
-			$body = $('body'),
-			$wrapper = $('#wrapper'),
-			$header = $('#header'),
-			$banner = $('#banner');
+			$panel = $panels.filter(window.location.hash);
+			$link = $nav_links.filter('[href="' + window.location.hash + '"]');
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+		}
 
-			$window.on('load pageshow', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
-			});
+		// No panel/link? Default to first.
+		if (!$panel
+			|| $panel.length == 0) {
 
-		// Clear transitioning state on unload/hide.
-			$window.on('unload pagehide', function() {
-				window.setTimeout(function() {
-					$('.is-transitioning').removeClass('is-transitioning');
-				}, 250);
-			});
+			$panel = $panels.first();
+			$link = $nav_links.first();
 
-		// Fix: Enable IE-only tweaks.
-			if (skel.vars.browser == 'ie' || skel.vars.browser == 'edge')
-				$body.addClass('is-ie');
+		}
 
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
+		// Deactivate all panels except this one.
+		$panels.not($panel)
+			.addClass('inactive')
+			.hide();
 
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
+		// Activate link.
+		$link
+			.addClass('active');
 
-		// Scrolly.
-			$('.scrolly').scrolly({
-				offset: function() {
-					return $header.height() - 2;
-				}
-			});
+		// Reset scroll.
+		$window.scrollTop(0);
 
-		// Tiles.
-			var $tiles = $('.tiles > article');
+	})();
 
-			$tiles.each(function() {
+	// Hashchange event.
+	$window.on('hashchange', function (event) {
 
-				var $this = $(this),
-					$image = $this.find('.image'), $img = $image.find('img'),
-					$link = $this.find('.link'),
-					x;
+		var $panel, $link;
 
-				// Image.
+		// Get panel, link.
+		if (window.location.hash) {
 
-					// Set image.
-						$this.css('background-image', 'url(' + $img.attr('src') + ')');
+			$panel = $panels.filter(window.location.hash);
+			$link = $nav_links.filter('[href="' + window.location.hash + '"]');
 
-					// Set position.
-						if (x = $img.data('position'))
-							$image.css('background-position', x);
+			// No target panel? Bail.
+			if ($panel.length == 0)
+				return;
 
-					// Hide original.
-						$image.hide();
+		}
 
-				// Link.
-					if ($link.length > 0) {
+		// No panel/link? Default to first.
+		else {
 
-						$x = $link.clone()
-							.text('')
-							.addClass('primary')
-							.appendTo($this);
+			$panel = $panels.first();
+			$link = $nav_links.first();
 
-						$link = $link.add($x);
+		}
 
-						$link.on('click', function(event) {
+		// Deactivate all panels.
+		$panels.addClass('inactive');
 
-							var href = $link.attr('href');
+		// Deactivate all links.
+		$nav_links.removeClass('active');
 
-							// Prevent default.
-								event.stopPropagation();
-								event.preventDefault();
+		// Activate target link.
+		$link.addClass('active');
 
-							// Start transitioning.
-								$this.addClass('is-transitioning');
-								$wrapper.addClass('is-transitioning');
+		// Set max/min height.
+		$main
+			.css('max-height', $main.height() + 'px')
+			.css('min-height', $main.height() + 'px');
 
-							// Redirect.
-								window.setTimeout(function() {
+		// Delay.
+		setTimeout(function () {
 
-									if ($link.attr('target') == '_blank')
-										window.open(href);
-									else
-										location.href = href;
+			// Hide all panels.
+			$panels.hide();
 
-								}, 500);
+			// Show target panel.
+			$panel.show();
 
-						});
+			// Set new max/min height.
+			$main
+				.css('max-height', $panel.outerHeight() + 'px')
+				.css('min-height', $panel.outerHeight() + 'px');
 
-					}
+			// Reset scroll.
+			$window.scrollTop(0);
 
-			});
+			// Delay.
+			window.setTimeout(function () {
 
-		// Header.
-			if (skel.vars.IEVersion < 9)
-				$header.removeClass('alt');
+				// Activate target panel.
+				$panel.removeClass('inactive');
 
-			if ($banner.length > 0
-			&&	$header.hasClass('alt')) {
+				// Clear max/min height.
+				$main
+					.css('max-height', '')
+					.css('min-height', '');
 
-				$window.on('resize', function() {
-					$window.trigger('scroll');
-				});
+				// IE: Refresh.
+				$window.triggerHandler('--refresh');
 
-				$window.on('load', function() {
+				// Unlock.
+				locked = false;
 
-					$banner.scrollex({
-						bottom:		$header.height() + 10,
-						terminate:	function() { $header.removeClass('alt'); },
-						enter:		function() { $header.addClass('alt'); },
-						leave:		function() { $header.removeClass('alt'); $header.addClass('reveal'); }
-					});
+			}, (breakpoints.active('small') ? 0 : 500));
 
-					window.setTimeout(function() {
-						$window.triggerHandler('scroll');
-					}, 100);
-
-				});
-
-			}
-
-		// Banner.
-			$banner.each(function() {
-
-				var $this = $(this),
-					$image = $this.find('.image'), $img = $image.find('img');
-
-				// Parallax.
-					$this._parallax(0.275);
-
-				// Image.
-					if ($image.length > 0) {
-
-						// Set image.
-							$this.css('background-image', 'url(' + $img.attr('src') + ')');
-
-						// Hide original.
-							$image.hide();
-
-					}
-
-			});
-
-		// Menu.
-			var $menu = $('#menu'),
-				$menuInner;
-
-			$menu.wrapInner('<div class="inner"></div>');
-			$menuInner = $menu.children('.inner');
-			$menu._locked = false;
-
-			$menu._lock = function() {
-
-				if ($menu._locked)
-					return false;
-
-				$menu._locked = true;
-
-				window.setTimeout(function() {
-					$menu._locked = false;
-				}, 350);
-
-				return true;
-
-			};
-
-			$menu._show = function() {
-
-				if ($menu._lock())
-					$body.addClass('is-menu-visible');
-
-			};
-
-			$menu._hide = function() {
-
-				if ($menu._lock())
-					$body.removeClass('is-menu-visible');
-
-			};
-
-			$menu._toggle = function() {
-
-				if ($menu._lock())
-					$body.toggleClass('is-menu-visible');
-
-			};
-
-			$menuInner
-				.on('click', function(event) {
-					event.stopPropagation();
-				})
-				.on('click', 'a', function(event) {
-
-					var href = $(this).attr('href');
-
-					event.preventDefault();
-					event.stopPropagation();
-
-					// Hide.
-						$menu._hide();
-
-					// Redirect.
-						window.setTimeout(function() {
-							window.location.href = href;
-						}, 250);
-
-				});
-
-			$menu
-				.appendTo($body)
-				.on('click', function(event) {
-
-					event.stopPropagation();
-					event.preventDefault();
-
-					$body.removeClass('is-menu-visible');
-
-				})
-				.append('<a class="close" href="#menu">Close</a>');
-
-			$body
-				.on('click', 'a[href="#menu"]', function(event) {
-
-					event.stopPropagation();
-					event.preventDefault();
-
-					// Toggle.
-						$menu._toggle();
-
-				})
-				.on('click', function(event) {
-
-					// Hide.
-						$menu._hide();
-
-				})
-				.on('keydown', function(event) {
-
-					// Hide on escape.
-						if (event.keyCode == 27)
-							$menu._hide();
-
-				});
+		}, 250);
 
 	});
 
+	// IE: Fixes.
+	if (browser.name == 'ie') {
+
+		// Fix min-height/flexbox.
+		$window.on('--refresh', function () {
+
+			$wrapper.css('height', 'auto');
+
+			window.setTimeout(function () {
+
+				var h = $wrapper.height(),
+					wh = $window.height();
+
+				if (h < wh)
+					$wrapper.css('height', '100vh');
+
+			}, 0);
+
+		});
+
+		$window.on('resize load', function () {
+			$window.triggerHandler('--refresh');
+		});
+
+		// Fix intro pic.
+		$('.panel.intro').each(function () {
+
+			var $pic = $(this).children('.pic'),
+				$img = $pic.children('img');
+
+			$pic
+				.css('background-image', 'url(' + $img.attr('src') + ')')
+				.css('background-size', 'cover')
+				.css('background-position', 'center');
+
+			$img
+				.css('visibility', 'hidden');
+
+		});
+
+
+
+
+
+	}
+
+
+
+	$(document).ready(function () {
+		let weatherIcon = {
+			'01': 'fas fa-sun',
+			'02': 'fas fa-cloud-sun',
+			'03': 'fas fa-cloud',
+			'04': 'fas fa-cloud-meatball',
+			'09': 'fas fa-cloud-sun-rain',
+			'10': 'fas fa-cloud-showers-heavy',
+			'11': 'fas fa-poo-storm',
+			'13': 'far fa-snowflake',
+			'50': 'fas fa-smog'
+		};
+
+		$.ajax({
+			url: 'http://api.openweathermap.org/data/2.5/weather?q=Gwangju&APPID=2ac15d9cd6dcfb20a2c3689107d75f0c&units=metric',
+
+			dataType: 'json',
+			type: 'GET',
+			success: function (data) {
+				var $Icon = (data.weather[0].icon).substr(0, 2);
+				var $Temp = Math.floor(data.main.temp) + 'º';
+				var $city = data.name;
+
+				$('.CurrIcon').append('<i class="' + weatherIcon[$Icon] + '"></i>');
+				$('.CurrTemp').prepend($Temp);
+				$('.City').append($city);
+			}
+		})
+	});
+
+
 })(jQuery);
+
+
+
+
+function GetInfo() {
+
+	var newName = document.getElementById("cityInput");
+	var cityName = document.getElementById("cityName");
+
+	cityName.innerHTML = "--" + newName.value + "--";
+
+	fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + newName.value + '&appid=32ba0bfed592484379e51106cef3f204')
+		.then(response => response.json())
+		.then(data => {
+
+			//Getting the min and max values for each day
+			for (i = 0; i < 5; i++) {
+				document.getElementById("day" + (i + 1) + "Min").innerHTML = "Min: " + Number(data.list[i].main.temp_min - 273.15).toFixed(1) + "°";
+
+				//Number(1.3450001).toFixed(2); // 1.35
+			}
+
+			for (i = 0; i < 5; i++) {
+				document.getElementById("day" + (i + 1) + "Max").innerHTML = "Max: " + Number(data.list[i].main.temp_max - 273.15).toFixed(2) + "°";
+			}
+
+			for (i = 0; i < 5; i++) {
+				document.getElementById("day" + (i + 1) + "humidity").innerHTML = "습도:" + Number(data.list[i].main.humidity) + '%';
+			}
+
+
+
+			//Getting Weather Icons
+			for (i = 0; i < 5; i++) {
+				document.getElementById("img" + (i + 1)).src = "http://openweathermap.org/img/wn/" +
+					data.list[i].weather[0].icon
+					+ ".png";
+			}
+			//------------------------------------------------------------
+			console.log(data)
+
+
+		})
+
+		.catch(err => alert("Something Went Wrong: Try Checking Your Internet Coneciton"))
+}
+
+function DefaultScreen() {
+	document.getElementById("cityInput").defaultValue = "Gwangju";
+	GetInfo();
+}
+
+
+//Getting and displaying the text for the upcoming five days of the week
+var d = new Date();
+var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
+
+//Function to get the correct integer for the index of the days array
+function CheckDay(day) {
+	if (day + d.getDay() > 6) {
+		return day + d.getDay() - 7;
+	}
+	else {
+		return day + d.getDay();
+	}
+}
+
+for (i = 0; i < 5; i++) {
+	document.getElementById("day" + (i + 1)).innerHTML = weekday[CheckDay(i)];
+}
+

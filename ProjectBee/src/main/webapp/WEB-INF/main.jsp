@@ -1,288 +1,645 @@
-<%@page import="com.BumbleBee.model.TbMemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
+<!--
+    Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-	<head>
-		<title>Forty by HTML5 UP</title>
-		<meta charset="UTF-8" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body>
-		<%  // 1. session영역에 저장되어있는 데이터 가져오기
-			TbMemberDTO user = (TbMemberDTO)session.getAttribute("user");
-		%>
-		
-		<!-- Wrapper -->
-			<div id="wrapper">
-	
-				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
-						<nav>
-						
-						<%	if(user != null) { 
-								if(user.getMbId().equals("admin")) { %>
-									<a href= Select.do>회원관리</a>
-								<%} else { %>
-									<a href= GoModify.do>개인정보수정</a>
-								<%} %>
-								<a href= Boardmain.do>게시판 이동</a>
-								<a href= Beevalue.do>벌 수정</a>
-								<a href= Logout.do>로그아웃</a>
-								<a href= Withdrawal.do>계정탈퇴</a>
-						<% 	} else { %>
-								<a href='#menu'>로그인</a>
-						<% 	}  %>
-								
-							<!-- 로그인 후 Logout.jsp로 이동할 수 있는'로그아웃'링크와 '개인정보수정'링크를 출력하시오. -->
-						</nav>
-					</header>
 
-				<!-- Menu -->
-					<nav id="menu">	
-						<ul class="links">
-							<li><h5>로그인</h5></li>
-								<form action="Login.do" method="post">
-									<li><input type="text"  placeholder="id 입력하세요" name = "id"></li>
-									<li><input type="password"  placeholder="PW를 입력하세요" name = "pw"></li>
-									<li><input type="submit" value="LogIn" class="button fit"></li>
-								</form>
-						</ul>
-						<ul class="actions vertical">
-							<li><h5>회원가입</h5></li>
-								<form action="Register.do" method="post">
-									<li><input type="text"  placeholder="id 입력하세요" name = "id"></li>
-									<li><input type="password"  placeholder="PW를 입력하세요" name = "pw"></li>
-									<li><input type="text"  placeholder="이름를 입력하세요" name = "name"></li>
-									<li><input type="text"  placeholder="나이 입력하세요" name = "age"></li>
-									<li><input type="text"  placeholder="직업 입력하세요" name = "job"></li>
-									<li><input type="text"  placeholder="지역 입력하세요" name = "region"></li>
-									<li><input type="text"  placeholder="전화번호 입력하세요" name = "tel"></li>
-									<li><input type="submit" value="JoinUs" class="button fit"></li>
-								</form>
-						</ul>
-						
-						
-					</nav>			
-				<!-- Banner -->
-					<section id="banner" class="major">
-						<div class="inner">
-							<header class="major">
-								
-							<%
-								if(user != null) {
-									// 로그인 성공했다면
-									out.print("<h1>" + user.getMbId() + "님 환영합니다!</h1>");
-								}
-								else {
-									// 로그인 실패했다면
-									out.print("<h1>로그인 한 세션아이디를 출력해주세요</h1>");
-								}
-							%>
-								<!-- 로그인 후 로그인 한 사용자의 세션아이디로 바꾸시오.
-									 ex)smart님 환영합니다 -->
-							</header>
-							<div class="content">
-								<p>아래는 지금까지 배운 웹 기술들입니다.<br></p>
-								<ul class="actions">
-									<li><a href="#one" class="button next scrolly">확인하기</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
+<head>
+    <title>Welcome to BeeHive</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="style.css">
+    <noscript>
+    <link rel="stylesheet" href="./assets/css/noscript.css" />
+    </noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="modal_style.css">
 
-				<!-- Main -->
-					<div id="main">
+</head>
+<style>
+    a {
+        text-decoration: none;
+        color: black;
+    }
 
-						<!-- One -->
-							<section id="one" class="tiles">
-								<article>
-									<span class="image">
-										<img src="images/pic01.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="#" class="link">HTML</a></h3>
-										<p>홈페이지를 만드는 기초 언어</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic02.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="#" class="link">CSS</a></h3>
-										<p>HTML을 디자인해주는 언어</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic03.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="#" class="link">Servlet/JSP</a></h3>
-										<p>Java를 기본으로 한 웹 프로그래밍 언어/스크립트 언어</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic04.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="#" class="link">JavaScript</a></h3>
-										<p>HTML에 기본적인 로직을 정의할 수 있는 언어</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic05.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="#" class="link">MVC</a></h3>
-										<p>웹 프로젝트 중 가장 많이 사용하는 디자인패턴</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic06.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="#" class="link">Web Project</a></h3>
-										<p>여러분의 최종프로젝트에 웹 기술을 활용하세요!</p>
-									</header>
-								</article>
-							</section>
-					<!-- Two -->
-							<section id="two">
-								<div class="inner">
-									<header class="major">
-										<h2>나에게 온 메세지 확인하기</h2>
-									</header>
-									<p></p>
-									<ul class="actions">
-										<li>로그인을 하세요.</li>
-										<li><a href="#" class="button next scrolly">전체삭제하기</a></li>
-									</ul>
-								</div>
-							</section>
+    a :hover {
+        text-decoration: underline;
+    }
 
-					</div>
+    .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
 
-				<!-- Contact -->
-					<section id="contact">
-						<div class="inner">
-							<section>
-								
-								<div class="field half first">
-										<label for="name">Name</label>
-										<input type="text"  id="name" placeholder="보내는 사람 이름" />
-									</div>
-									<div class="field half">
-										<label for="email">Email</label>
-										<input type="text"  id="email" placeholder="보낼 사람 이메일"/>
-									</div>
+        width: 100%;
+        height: 100%;
 
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea  id="message" rows="6"></textarea>
-									</div>
-									<ul class="actions">
-										<li><input id = "btn_msg" type="button" value="Send Message" class="special" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								
-							</section>
-							
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="#">
-											<% if(user != null) {
-													out.print(user.getMbId());
-											} %>
-										</a>
-										<!-- 로그인 한 사용자의 이메일을 출력하시오 -->
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span><% if(user != null) {
-													out.print(user.getMbTel());
-											} %></span>
-										<!-- 로그인 한 사용자의 전화번호를 출력하시오 -->
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon alt fa-home"></span>
-										<h3>Address</h3>
-										<span><% if(user != null) {
-													out.print(user.getMbRegion());
-											} %></span>
-										<!-- 로그인 한 사용자의 집주소를 출력하시오 -->
-									</div>
-								</section>
-							</section>					
-						</div>
-					</section>
+        display: none;
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
+        background-color: #ffffff
+    }
+</style>
 
-			</div>
+<body class="is-preload">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <!-- Wrapper-->
+    <div id="wrapper">
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-			
-			
-			<script type="text/javascript">
-			// 1. 필요한 태그 가져오기
-			// 2. 태그들에 이벤트 리스너 달아주기
-			$('#btn_msg').on('click', function(){
-				// 3. 기능을 작성
-				// ---> 버튼을 클릭하면 AjaxTest쪽으로 비동기통신을 사용하여 데이터 전송
-				var text = $('#message').val();				
-				$.ajax({
-					url : 'Ajax.do',
-					// 보내줄 데이터를 적는 property - 쿼리스트링, 객체 방식으로 전송
-					data : {msg:text}, 
-					success : function(result) {
-						console.log('성공!');
-						console.log(result);
-					},
-					error : function() {
-						console.log('실패..');
-					}
-				})
-				
-			});
-			
-			
-			
-			</script>
-	</body>
+        <!-- Nav -->
+        <nav id="nav">
+            <a href="#" class="icon solid fa-home glyphicon glyphicon-home dark"><span>Home</span></a>
+            <a href="#login" class="icon solid fa-key"><span>로그인</span></a>
+            <a href="#member" class="icon solid fa-user-plus"><span>회원가입</span></a>
+            <a href="#dashboard" class="icon solid fa-table"><span>대시보드</span></a>
+            <a href="#weather" class="icon solid fa-cloud"><span>날씨정보</span></a>
+            <a href="#inform" class="icon solid fa-folder"><span>양봉정보</span></a>
+            <a href="#board" class="icon solid fa-book"><span>게시판</span></a>
+        </nav>
+
+        <nav class="navbar fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand -4 fw-bold" href="#">Smart BeeHive</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title text-warning" id="offcanvasNavbarLabel">로그인이 필요합니다</h5>
+                        <button type="button" class="btn-close btn-warning" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <hr color="gold">
+
+                </div>
+            </div>
+        </nav>
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Me -->
+            <article id="home" class="panel intro">
+                <header>
+                    <h1 class="text-warning">SMART BEEHIVE</h1>
+                    <p>양봉관리를 더 스마트하게</p>
+                </header>
+                <a href="#work" class="jumplink pic">
+                    <span class="text-warning arrow icon solid fa-chevron-righ t"><span>See my work</span></span>
+
+                </a>
+            </article>
+            <!-- 로그인 -->
+            <article id="login" class="panel">
+                <header>
+                    <h2 class="text-warning">로그인</h2>
+                </header>
+                <form action="#" method="post">
+                    <div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="name" placeholder="아이디를 입력하세요" />
+                            </div>
+                            <div class="col-6 ">
+                                <input type="text" name="email" placeholder="비밀번호를 입력하세요" />
+                            </div>
+                            <div class="col-6">
+                            </div>
+                            <button type="button" class="btn btn-warning">로그인</button>
+                        </div>
+                    </div>
+                </form>
+            </article>
+
+            <article id="member" class="panel">
+                <header>
+                    <h2 class="text-warning">회원가입</h2>
+                </header>
+                <div class="col-sm-12 col-md-offset-3 ">
+                    <form method="post" role="form" action="Register.do">
+                        <div class="form-group">
+                            <label for="mbid">아이디</label>
+                            <input type="text" name="mbid" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mbpw">비밀번호</label>
+                            <input type="password" name="mbpw" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mbname">이름</label>
+                            <input type="text" name="mbname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mbage">나이</label>
+                            <input type="text" name="mbage" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mbjob">직업</label>
+                            <input type="text" name="mbjob" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mbtel">전화번호</label>
+                            <input type="text" name="mbtel" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mbregion">지역</label>
+                            <input type="text" name="mbregion" class="form-control">
+                        </div>
+                        <br>
+
+                        <div class="form-group text-center">
+                        <input type="submit" value="가입하기">                           
+                        
+
+                        </div>
+                    </form>
+                </div>
+
+            </article>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+                crossorigin="anonymous"></script>
+
+            <!-- 회원가입끝 -->
+
+            <!-- 제품소개 화살표 -->
+            <article id="work" class="panel">
+                <header>
+                    <h2 class="text-warning text-bold">Smart Beehive 소개</h2>
+                    <h6 class="text-warning">농가 소득과 꿀벌을 지키는 비가드</64>
+                </header>
+                <div class="container text-left">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card" style="width: 40rem;">
+                                <img src="http://rda.go.kr/webzine/2022/04/images/sub1-2_img03.jpg"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">스마트 벌통 비-가드(Bee-Guard)</h5>
+                                    <p class="card-text">스마트 벌통은 꿀벌의 생육을 온전하게 관리할 수 있고</p>
+                                    <p class="card-text">말벌로부터의 피해를 예방하는 스마트 비가드 IOT 시스템입니다.</p>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card" style="width: 40rem;">
+                                <img src="https://image.newsis.com/2021/02/14/NISI20210214_0000690069_web.jpg?rnd=20210214050513"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">스마트 벌통(Smart Beehive)</h5>
+                                    <p class="card-text">벌통의 온도와 습도를 데이터를 편리하게 수집 관리 할수 있으며,
+                                    <p class="card-text">압력센서이용 분봉및 병충해 예상시 미리 알려줍니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card" style="width:40rem;">
+                                <img src="https://cdn.newspenguin.com/news/photo/202203/10913_32455_2928.jpg"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">스마트 말벌 포획기(Wasp capture machine)</h5>
+                                    <p class="card-text">양봉 농가의 최대의 적 흑등말벌 피해, 스마트 말벌 포획기는 말벌유인액이 떨어지지 않도록 알려주며,
+                                        유인액이 굳지 않도록 자동으로 관리해 줍니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="container text-center">
+                    <a href="#" class="center btn btn-warning">HOME</a>
+                </div>
+
+            </article>
+            <!-- 대쉬보드  시작-->
+            <article id="dashboard" class="panel">
+                <header>
+                    <h2 class="text-warning">대시보드</h2>
+                    <p>나의 벌통 현재 온도와 습도, 분봉여부를 확인하세요</p>
+                    <br>
+
+                </header>
+                <table class="table table-bordered text-center ">
+                    <h5 class="text-center ">벌통의 온도 · 습도 · 무게</h5>
+                    <br>
+
+                    <tr class="bg-warning">
+                        <td>번호</td>
+                        <td>온도</td>
+                        <td>습도</td>
+                        <td>무게</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            33
+                        </td>
+                        <td>
+                            45
+                        </td>
+                        <td>
+                            15
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            33
+                        </td>
+                        <td>
+                            45
+                        </td>
+                        <td>
+                            15
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            33
+                        </td>
+                        <td>
+                            45
+                        </td>
+                        <td>
+                            15
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4
+                        <td>
+                            33
+                        </td>
+                        <td>
+                            45
+                        </td>
+                        <td>
+                            15
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            5
+                        <td>
+                            33
+                        </td>
+                        <td>
+                            45
+                        </td>
+                        <td>
+                            15
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table table-bordered text-center">
+                    <h5 class="text-center">말벌 포획기</h5>
+                    <br>
+                    <tr class="bg-warning">
+                        <td>
+                            번호
+                        </td>
+                        <td>
+                            포획 수량(마리)
+                        </td>
+                        <td>
+                            유인액 잔량(%)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            50
+                        </td>
+                    </tr>
+                </table>
+            </article>
+            <!-- 대쉬보드 끝 -->
+
+            <!--날씨-->
+            <article id="weather" class="panel ">
+
+                <h2 class="text-warning  text-bold">날씨정보</h2>
+                <br>
+                <form action="#">
+
+                    <body onload="DefaultScreen()">
+                        <center>
+                            <div class="weather">
+                                <h1 id="Para1"></h1>
+                                <p></p><input type="text" id="cityInput" placeholder="지역을 입력하세요(ENG)"></p>
+                                <a href="#link" class="btn btn-warning" onclick="GetInfo()">지역 입력</a>
+
+                                <br>
+                                <br>
+                                <h2 id="cityName"></h2>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                        </center>
+
+                        <div id="weatherContainer">
+                            <div id="iconsContainer">
+                                <div class="icons">
+                                    <p class="weather" id="day1"></p>
+                                    <div class="image"><img src="dots.png" class="imgClass" id="img1"></div>
+                                    <p class="minValues" id="day1Min">Loading...</p>
+                                    <p class="maxValues" id="day1Max">Loading...</p>
+                                    <p class="humidity" id="day1humidity"></p>
+
+
+                                </div>
+                                <div class="icons">
+                                    <p class="weather" id="day2"></p>
+                                    <div class="image"><img src="dots.png" class="imgClass" id="img2"></div>
+                                    <p class="minValues" id="day2Min">Loading...</p>
+                                    <p class="maxValues" id="day2Max">Loading...</p>
+                                    <p class="humidity" id="day2humidity"></p>
+
+                                </div>
+                                <div class="icons">
+                                    <p class="weather" id="day3"></p>
+                                    <div class="image"><img src="dots.png" class="imgClass" id="img3"></div>
+                                    <p class="minValues" id="day3Min">Loading...</p>
+                                    <p class="maxValues" id="day3Max">Loading...</p>
+                                    <p class="humidity" id="day3humidity"></p>
+
+                                </div>
+                                <div class="icons">
+                                    <p class="weather" id="day4"></p>
+                                    <div class="image"><img src="dots.png" class="imgClass" id="img4"></div>
+                                    <p class="minValues" id="day4Min">Loading...</p>
+                                    <p class="maxValues" id="day4Max">Loading...</p>
+                                    <p class="humidity" id="day4humidity"></p>
+
+
+                                </div>
+                                <span class="icons">
+                                    <p class="weather" id="day5"></p>
+                                    <div class="image"><img src="dots.png" class="imgClass" id="img5"></div>
+                                    <p class="minValues" id="day5Min">Loading...</p>
+                                    <p class="maxValues" id="day5Max">Loading...</p>
+                                    <p class="humidity" id="day5humidity"></p>
+                            </div>
+                        </div>
+
+                </form>
+            </article>
+
+
+            <!--날씨 정보끝-->
+            <!--양봉정보-->
+            <article id="inform" class="panel ">
+                <header>
+                    <h2 class="text-warning  text-bold">양봉정보</h2>
+                </header>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <img src="http://rda.go.kr/webzine/2022/04/images/sub1-2_img03.jpg"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">양봉협회</h5>
+                                    <p class="card-text"> 사단법인 한국양봉협회
+                                    </p>
+                                    <br>
+                                    <a href="https://www.korapis.or.kr/jsp/main.jsp" class="btn btn-warning">이동하기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://image.newsis.com/2021/02/14/NISI20210214_0000690069_web.jpg?rnd=20210214050513"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">사양관리 방법</h5>
+                                    <p class="card-text">계절별 사양관리 방법 공개.</p>
+                                    <br>
+                                    <a href="https://www.korapis.or.kr/jsp/sub3-3.jsp" class="btn btn-warning">이동하기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://cdn.newspenguin.com/news/photo/202203/10913_32455_2928.jpg"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">품질검사 접수</h5>
+                                    <p class="card-text">협회 양봉산물연구소 품질검사.
+                                    </p>
+                                    <br>
+                                    <a href="https://www.korapis.or.kr/jsp/sub5-3.jsp" class="btn btn-warning">이동하기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://image.newsis.com/2021/02/14/NISI20210214_0000690069_web.jpg?rnd=20210214050513"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">한국의 밀원 식물</h5>
+                                    <p class="card-text">밀원식물 (꽃) 정보 확인 하기</p>
+                                    <br>
+                                    <a href="https://www.korapis.or.kr/book_beeplant/index.html"
+                                        class="btn btn-warning">이동하기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!--양봉정보끝-->
+
+            <article id="board" class="panel">
+                <header>
+                    <h2 class="text-warning">게시판</h2>
+                </header>
+                <form action="#" method="post">
+                    <div class="board_list_wrap">
+                        <table class="board_list">
+                            <caption>게시판 목록</caption>
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>글쓴이</th>
+                                    <th>작성일</th>
+                                    <th>조회수</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>N</td> <!--변수처리-->
+                                    <td class="board_list_wrap2">
+                                        <a href="/" class="">테스트 입니다1</a>
+                                    </td>
+                                    <td>관리자</td>
+                                    <td>2023-01-20</td>
+                                    <td>123123</td>
+                                </tr>
+                                <tr>
+                                    <td>N</td> <!--변수처리-->
+                                    <td class="board_list_wrap2">
+                                        <a href="#">테스트 입니다2</a>
+                                    </td>
+                                    <td>관리자</td>
+                                    <td>2023-01-20</td>
+                                    <td>123123</td>
+                                </tr>
+                                <tr>
+                                    <td>N</td> <!--변수처리-->
+                                    <td class="board_list_wrap2">
+                                        <a href="#">테스트 입니다3</a>
+                                    </td>
+                                    <td>관리자</td>
+                                    <td>2023-01-20</td>
+                                    <td>123123</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="page">
+                            <a href=""> ≪ </a>
+                            <a href="">＜</a>
+                            <a href="">[1]</a>
+                            <a href="">[2]</a>
+                            <a href="">[3]</a>
+                            <a href="">[4]</a>
+                            <a href="">[5]</a>
+                            <a href="">＞</a>
+                            <a href="">≫</a>
+                        </div>
+                        <br>
+                        <div class="modal">
+                            <div class="modal_body"> 
+                                <article id="boardwrite" class="panel">
+       
+                                <article id="boardwrite" class="panel">
+                                <div class="form_box">
+                                    <h3 class="text-warning text-bold">게시글 작성</h3>
+                                    <input class="input_field" type="text" placeholder="글쓴이의 이름은?" ><br>
+                                    <input class="input_field" type="password" placeholder="글 비밀번호" ><br>
+                                    <input class="input_field" type="text" placeholder="제목을 입력해주세요." ><br>
+                                    <textarea class="textarea_field" placeholder="내용을 입력해주세요."></textarea><br>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="http://121.179.35.58:5500/main.html#board" class="btn btn-warning" role="button">글쓰기</a>
+                                    </div>
+                                </div>
+                                </article>
+                        </article></div>
+
+                            
+                          </div>
+                        <div class="d-flex justify-content-center">
+                            
+                            <button type="submit" class="btn-open-popup btn-warning">게시글 작성</button>
+                        </div>
+                        <script>
+                            const modal = document.querySelector('.modal');
+                            const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+                            btnOpenPopup.addEventListener('click', evt => {
+                                alert("안녕하세요");
+                                evt.stopPropagation();          //이벤트 전파 막음
+                                evt.preventDefault();           //기본동작을 막음
+                                if(modal){
+                                    modal.style.display = 'block';
+                                }
+                            });
+                        </script>
+
+                    </div>
+                </form>
+            </article>
+
+
+
+
+
+            <!--양봉정보-->
+
+        </div>
+        <!-- Footer -->
+        <div id="footer">
+            <ul class="copyright text-warning">
+                <li>&copy; Untitled.</li>
+                <li>Design: Bumble Bee</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
 </html>
-
