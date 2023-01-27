@@ -19,8 +19,8 @@ public class Login implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 데이터 받아오기(id, pw)
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String id = request.getParameter("mbid");
+		String pw = request.getParameter("mbpw");
 		
 		// 2. 묶어주기
 		TbMemberDTO dto = new TbMemberDTO();
@@ -41,7 +41,7 @@ public class Login implements Command {
 		else {
 			// 로그인 실패
 			System.out.println("실패");
-			return "main.jsp";
+			return "start.jsp";
 		}
 		
 	}

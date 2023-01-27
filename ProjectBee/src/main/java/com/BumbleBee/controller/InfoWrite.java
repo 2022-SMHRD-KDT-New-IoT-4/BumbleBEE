@@ -59,6 +59,7 @@ public class InfoWrite extends HttpServlet {
     	dto.setBhSeq(1);
     	TbBeehiveDAO dao = new TbBeehiveDAO();
     	int row = dao.modify(dto);
+    	
     	if(row > 0) {
     		System.out.println("Humidity: " + dto.getBhHumid() +  ", Temperature: " + dto.getBhTemp() + ", Weight: " + dto.getBhWeight());
     	}

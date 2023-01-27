@@ -38,7 +38,7 @@ public class Register implements Command {
 		}
 		else {
 			// 실패 후 이동할 페이지
-			return "main.jsp";
+			return "start.jsp";
 		}
 		
 		

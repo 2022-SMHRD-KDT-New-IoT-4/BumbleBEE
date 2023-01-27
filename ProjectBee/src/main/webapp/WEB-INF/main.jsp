@@ -1,3 +1,4 @@
+<%@page import="com.BumbleBee.model.TbMemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -21,6 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="modal_style.css">
+    
 
 </head>
 <style>
@@ -48,6 +50,7 @@
 </style>
 
 <body class="is-preload">
+	<% TbMemberDTO user = (TbMemberDTO)request.getAttribute("user"); %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
@@ -56,13 +59,17 @@
 
         <!-- Nav -->
         <nav id="nav">
-            <a href="#" class="icon solid fa-home glyphicon glyphicon-home dark"><span>Home</span></a>
-            <a href="#login" class="icon solid fa-key"><span>로그인</span></a>
-            <a href="#member" class="icon solid fa-user-plus"><span>회원가입</span></a>
-            <a href="#dashboard" class="icon solid fa-table"><span>대시보드</span></a>
-            <a href="#weather" class="icon solid fa-cloud"><span>날씨정보</span></a>
+        	<a href="#" class="icon solid fa-home glyphicon glyphicon-home dark"><span>Home</span></a>
+
+        	<!--  <a href="#login" class="icon solid fa-key"><span>로그인</span></a> -->
+            <!-- <a href="#member" class="icon solid fa-user-plus"><span>회원가입</span></a>  -->
+            <a href="BhSelect.do" class="icon solid fa-table"><span>대시보드</span></a>
+           	<a href="#weather" class="icon solid fa-cloud"><span>날씨정보</span></a>
             <a href="#inform" class="icon solid fa-folder"><span>양봉정보</span></a>
             <a href="#board" class="icon solid fa-book"><span>게시판</span></a>
+            
+            
+            
         </nav>
 
         <nav class="navbar fixed-top">
@@ -75,12 +82,14 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title text-warning" id="offcanvasNavbarLabel">로그인이 필요합니다</h5>
+						<a href = "Logout.do"><h5 class="offcanvas-title text-warning" id="offcanvasNavbarLabel">로그아웃</h5></a>
+                    	<!-- <h5 class="offcanvas-title text-warning" id="offcanvasNavbarLabel">로그인이 필요합니다</h5>  -->
                         <button type="button" class="btn-close btn-warning" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
+                    
                     <hr color="gold">
-
+				
                 </div>
             </div>
         </nav>
@@ -99,27 +108,34 @@
                 </a>
             </article>
             <!-- 로그인 -->
+          
             <article id="login" class="panel">
+            <% if(user != null) { %>
                 <header>
                     <h2 class="text-warning">로그인</h2>
                 </header>
-                <form action="#" method="post">
+                <form action="Login.do" method="post">
                     <div>
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="name" placeholder="아이디를 입력하세요" />
+                                <input type="text" name="mbid" placeholder="아이디를 입력하세요" />
                             </div>
                             <div class="col-6 ">
-                                <input type="text" name="email" placeholder="비밀번호를 입력하세요" />
+                                <input type="text" name="mbpw" placeholder="비밀번호를 입력하세요" />
                             </div>
                             <div class="col-6">
                             </div>
-                            <button type="button" class="btn btn-warning">로그인</button>
+                            <!-- <button type="button" class="btn btn-warning">로그인</button> -->
+                            <input type="submit" value="로그인" class="btn btn-warning">
                         </div>
                     </div>
                 </form>
+              <% } else { %>
+               <a href = "Logout.do">로그아웃</a>
+               <% } %>
             </article>
-
+            
+<!-- 
             <article id="member" class="panel">
                 <header>
                     <h2 class="text-warning">회원가입</h2>
@@ -170,7 +186,7 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
                 crossorigin="anonymous"></script>
-
+ -->
             <!-- 회원가입끝 -->
 
             <!-- 제품소개 화살표 -->
@@ -231,6 +247,7 @@
 
             </article>
             <!-- 대쉬보드  시작-->
+            
             <article id="dashboard" class="panel">
                 <header>
                     <h2 class="text-warning">대시보드</h2>
@@ -238,6 +255,7 @@
                     <br>
 
                 </header>
+               
                 <table class="table table-bordered text-center ">
                     <h5 class="text-center ">벌통의 온도 · 습도 · 무게</h5>
                     <br>
@@ -267,10 +285,10 @@
                             2
                         </td>
                         <td>
-                            33
+                            23
                         </td>
                         <td>
-                            45
+                            34
                         </td>
                         <td>
                             15
@@ -281,39 +299,39 @@
                             3
                         </td>
                         <td>
-                            33
+                            18
                         </td>
                         <td>
-                            45
+                            29
                         </td>
                         <td>
-                            15
+                            19
                         </td>
                     </tr>
                     <tr>
                         <td>
                             4
                         <td>
-                            33
+                            32
                         </td>
                         <td>
-                            45
+                            41
                         </td>
                         <td>
-                            15
+                            12
                         </td>
                     </tr>
                     <tr>
                         <td>
                             5
                         <td>
-                            33
+                            23
                         </td>
                         <td>
-                            45
+                            37
                         </td>
                         <td>
-                            15
+                            12
                         </td>
                     </tr>
                 </table>

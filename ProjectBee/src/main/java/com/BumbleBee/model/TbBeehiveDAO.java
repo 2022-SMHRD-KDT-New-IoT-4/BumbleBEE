@@ -1,5 +1,7 @@
 package com.BumbleBee.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -18,6 +20,20 @@ public class TbBeehiveDAO {
 			session.close();
 		}
 		return row;
+	}
+	public List<TbBeehiveDAO> bhselect() {
+		List<TbBeehiveDAO> list = null;
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		try {
+			list = session.selectList("com.BumbleBee.model.TbBeehiveDAO.bhselect");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		
+		return list;
 	}
 	
 	

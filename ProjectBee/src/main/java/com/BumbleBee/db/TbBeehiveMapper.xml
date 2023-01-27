@@ -11,6 +11,10 @@
 		where BhSeq = #{bhSeq}
 	</update>
 	
-  
+  	
+  	<select id="bhselect" resultType="TbBeehiveDTO">
+  		select bhseq, bhweight, bhtemp, bhhumid 
+  		from tbbeehive
+  	</select>
   
 </mapper>
