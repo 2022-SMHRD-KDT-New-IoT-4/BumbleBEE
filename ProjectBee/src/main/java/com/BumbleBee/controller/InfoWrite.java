@@ -56,12 +56,12 @@ public class InfoWrite extends HttpServlet {
     	dto.setBhTemp(info.getTemperature());
     	dto.setBhWeight(info.getWeight());
     	dto.setOwnerId("1");
-    	dto.setBhSeq(1);
     	TbBeehiveDAO dao = new TbBeehiveDAO();
     	int row = dao.modify(dto);
     	
     	if(row > 0) {
     		System.out.println("Humidity: " + dto.getBhHumid() +  ", Temperature: " + dto.getBhTemp() + ", Weight: " + dto.getBhWeight());
+    		response.sendRedirect("BhSelect.do");
     	}
     	else {
     		System.out.println("실패: " + row);

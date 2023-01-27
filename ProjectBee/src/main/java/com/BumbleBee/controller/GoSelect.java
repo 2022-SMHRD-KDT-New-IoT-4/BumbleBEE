@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GoModify implements Command {
+public class GoSelect implements Command {
 	private static final long serialVersionUID = 1L;
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		return "mbmodify.jsp";
-		
+		return "mbselect.jsp";
 	}
 
 }

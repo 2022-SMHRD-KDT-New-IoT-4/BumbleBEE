@@ -28,7 +28,7 @@ public class Withdrawal implements Command {
 		if(row > 0) {
 			session.removeAttribute("user");
 			
-			return "main.jsp";
+			return "start.jsp";
 			// 회원탈퇴 성공
 		}
 		else {

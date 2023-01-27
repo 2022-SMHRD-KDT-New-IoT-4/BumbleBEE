@@ -5,16 +5,16 @@
   
 <mapper namespace="com.BumbleBee.model.TbBeehiveDAO" > 
 	
-	<update id="modify" parameterType="TbBeehiveDTO">
-		update tbbeehive 
-		SET BHWEIGHT = #{bhWeight}, bhtemp = #{bhTemp}, bhhumid = #{bhHumid}
-		where BhSeq = #{bhSeq}
-	</update>
+	<insert id="modify" parameterType="TbBeehiveDTO">
+		insert into tbbeehive (ownerid, BHWEIGHT, bhtemp, bhhumid, bhtime) 
+		values(#{ownerId},#{bhWeight}, #{bhTemp}, #{bhHumid}, sysdate)
+	</insert>
 	
   	
   	<select id="bhselect" resultType="TbBeehiveDTO">
   		select bhseq, bhweight, bhtemp, bhhumid 
   		from tbbeehive
+  		order by bhseq desc
   	</select>
   
 </mapper>

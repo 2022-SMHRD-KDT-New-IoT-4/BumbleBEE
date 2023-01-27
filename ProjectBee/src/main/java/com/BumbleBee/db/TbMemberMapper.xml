@@ -18,8 +18,8 @@
 
   <update id="modify" parameterType="TbMemberDTO">
   		update tbmember
-  		set mbpw = #{mbPw}, mbname = #{mbName}, mbage = #{mbAge}, mbjob = #{mbJob}, mbregion = #{mbRegion}, mbtel = {mbTel}
-  		where mbid = #{id}
+  		set mbpw = #{mbPw}, mbname = #{mbName}, mbage = #{mbAge}, mbjob = #{mbJob}, mbregion = #{mbRegion}, mbtel = #{mbTel}
+  		where mbid = #{mbId}
   </update>
   
   <!-- resulType쪽에 굳이 list를 명시할 필요는 없다.

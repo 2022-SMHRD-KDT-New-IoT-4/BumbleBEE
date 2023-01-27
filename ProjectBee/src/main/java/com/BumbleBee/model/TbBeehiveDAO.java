@@ -9,6 +9,8 @@ import com.BumbleBee.db.SqlSessionManager;
 
 public class TbBeehiveDAO {
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+	
+	
 	public int modify(TbBeehiveDTO dto) {
 		int row = 0;
 		SqlSession session = sqlSessionFactory.openSession(true);		
@@ -21,6 +23,10 @@ public class TbBeehiveDAO {
 		}
 		return row;
 	}
+	
+	
+	
+	
 	public List<TbBeehiveDAO> bhselect() {
 		List<TbBeehiveDAO> list = null;
 		SqlSession session = sqlSessionFactory.openSession(true);		
