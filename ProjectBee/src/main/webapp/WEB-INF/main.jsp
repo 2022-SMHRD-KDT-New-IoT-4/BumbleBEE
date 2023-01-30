@@ -66,7 +66,7 @@
             <a href="BhSelect.do" class="icon solid fa-table"><span>대시보드</span></a>
            	<a href="#weather" class="icon solid fa-cloud"><span>날씨정보</span></a>
             <a href="#inform" class="icon solid fa-folder"><span>양봉정보</span></a>
-            <a href="#board" class="icon solid fa-book"><span>게시판</span></a>
+            <a href="Boardmain.do" class="icon solid fa-book"><span>게시판</span></a>
             
             
             

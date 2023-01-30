@@ -81,4 +81,19 @@ public class TbBoardDAO {
 		
 		return list;
 	}
+
+	public TbBoardDTO select(TbBoardDTO dto) {
+		TbBoardDTO board = null;
+		SqlSession session = sqlSessionFactory.openSession(true);
+		try {
+			board = session.selectOne("com.BumbleBee.model.TbBoardDAO.boardselect", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		
+		return board;
+	}
 }

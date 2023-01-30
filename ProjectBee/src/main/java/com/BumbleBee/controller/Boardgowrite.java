@@ -12,7 +12,7 @@ public class Boardgowrite implements Command {
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		return "Board_Write.jsp";
+		return "boardgowrite.jsp";
 	}
 
 }

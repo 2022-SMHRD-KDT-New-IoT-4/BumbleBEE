@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.BumbleBee.controller.BhSelect;
 import com.BumbleBee.controller.BoardGomodify;
+import com.BumbleBee.controller.BoardSelect;
 import com.BumbleBee.controller.Boardgowrite;
 import com.BumbleBee.controller.Boardmain;
 import com.BumbleBee.controller.Boardwrite;
@@ -58,6 +59,7 @@ public class FrontController extends HttpServlet {
 		map.put("Boardgowrite.do", new Boardgowrite());
 		map.put("Boardwrite.do", new Boardwrite());
 		map.put("BoardGomodify.do", new BoardGomodify());
+		map.put("BoardSelect.do", new BoardSelect());
 //		map.put("Boardmodify.do", new Boardmodify());
 //		map.put("Boarddelte.do", new Boarddelete());
 //		map.put("Boardlikes.do", new Boardlikes());

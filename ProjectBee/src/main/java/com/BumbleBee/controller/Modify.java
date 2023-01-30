@@ -36,6 +36,7 @@ public class Modify implements Command {
 		int row = dao.modify(dto);
 		if(row > 0) {
 			// 성공
+			session.setAttribute("user", dto);
 			return "main.jsp";
 		}
 		else {

@@ -22,13 +22,12 @@ public class Boardmain implements Command {
 		
 		if(list != null) {
 			request.setAttribute("list", list);
-			return "Board_List.jsp";
+			return "boardmain.jsp";
 			
 		}
 		else {
 			return "main.jsp";
 		}
-		
 		
 		
 	}

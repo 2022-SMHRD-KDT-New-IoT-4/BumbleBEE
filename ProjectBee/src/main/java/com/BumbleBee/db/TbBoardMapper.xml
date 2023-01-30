@@ -5,7 +5,7 @@
  
 <mapper namespace="com.BumbleBee.model.TbBoardDAO" > 
 	<insert id="boardwrite" parameterType="TbBoardDTO">
-		insert into tbboard(boardtitle, boardcontent, boardfile, boarddt, mbid, boardviews, boardlikes)
+		insert into tbboard (boardtitle, boardcontent, boardfile, boarddt, mbid, boardviews, boardlikes)
 		values(#{boardTitle}, #{boardContent}, 'no file', sysdate ,#{mbId}, 0, 0)
 	</insert>
   	
@@ -30,4 +30,9 @@
   		select * from tbboard order by boardseq
   	</select>
   	
+  	<select id="boardselect" parameterType="TbBoardDTO" resultType="TbBoardDTO">
+  		select * 
+  		from tbboard 
+  		where boardseq = #{boardSeq}
+  	</select>
 </mapper>
