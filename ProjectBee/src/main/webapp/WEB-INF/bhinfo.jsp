@@ -15,7 +15,7 @@
 	<table>
 		
 		 <div class="chart-container" style="position: relative; height:40vh; width:30vw">
-		 <canvas id="myChart" width="1800" height="800"></canvas>
+		 <canvas id="myChart" width="1800" height="880"></canvas>
 		 </div>
   <script>
   const labels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24    (H)'];

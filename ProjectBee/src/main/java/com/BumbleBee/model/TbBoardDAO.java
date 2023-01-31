@@ -96,4 +96,17 @@ public class TbBoardDAO {
 		
 		return board;
 	}
+
+	public int boardViews(TbBoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = 0;
+		try {
+			row = session.update("com.BumbleBee.model.TbBoardDAO.boardviews", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return row;
+	}
 }

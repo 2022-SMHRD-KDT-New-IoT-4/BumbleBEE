@@ -11,8 +11,17 @@ public class BoardGomodify implements Command {
 	private static final long serialVersionUID = 1L;
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		return "Board_Update.jsp";
+		StringBuffer requestURL = request.getRequestURL();
+		String queryString = request.getQueryString();
+		String data = null;
+		if(queryString == null) {
+			data = requestURL.toString();
+		} else {
+			data = requestURL.append('?').append(queryString).toString();
+		}
+		data = data.substring(data.indexOf("=") + 1);
+		request.setAttribute("data", data);
+		return "boardmodify.jsp";
 	}
 
 }

@@ -10,9 +10,9 @@
 	</insert>
   	
   	<update id="boardmodify" parameterType="TbBoardDTO">
-  		update from tbboard
+  		update tbboard
   		set boardtitle = #{boardTitle}, boardcontent = #{boardContent}
-  		where mbid = #{id} and boardseq = #{boardSeq}
+  		where boardseq = #{boardSeq}
   	</update>
   	
   	<delete id="boarddelete" parameterType="TbBoardDTO">
@@ -21,8 +21,14 @@
   	</delete>
   	
   	<update id="boardlikes" parameterType="TbBoardDTO">
-  		update from tbboard
+  		update tbboard
   		set boardlikes = #{boardLikes}
+  		where boardseq = #{boardSeq}
+  	</update>
+  	
+  	<update id="boardviews" parameterType="TbBoardDTO">
+  		update tbboard
+  		set boardviews = #{boardViews}
   		where boardseq = #{boardSeq}
   	</update>
   	

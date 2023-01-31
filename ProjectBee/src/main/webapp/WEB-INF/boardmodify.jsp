@@ -1,5 +1,3 @@
-<%@page import="com.BumbleBee.model.TbMemberDTO"%>
-<%@page import="com.BumbleBee.model.TbBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,36 +11,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% TbBoardDTO dto =  (TbBoardDTO)request.getAttribute("board"); %>
-	<% TbMemberDTO mdto = (TbMemberDTO)session.getAttribute("user"); %>
-	<% if(mdto == null) {
-		response.sendRedirect("Start.do");
-	} %>
+	<% String data = (String)request.getAttribute("data"); %>
 	<div class="container">
-		<h2>자유게시판</h2>
+		<h2>수정</h2>
 		<div class="panel panel-default">
 			<!--<div class="panel-heading"></div> -->
 			<div class="panel-body">
-				
+				<form class="form-horizontal" action="Boardmodify.do?boardid=<%=data%>" method="post">
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="title">제목:</label>
 				    <div class="col-sm-10">
-				      <%= dto.getBoardTitle() %>
+				      <input type="text" name="title" class="form-control" id="title" placeholder="제목입력">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="contents">내용:</label>
 				    <div class="col-sm-10">
-				      <%= dto.getBoardContent() %>
+				      <textarea placeholder="내용입력" class="form-control" id="contents" name="content" rows="15" cols=""></textarea>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
-					  <% if(dto.getMbId().equals(mdto.getMbId()) || mdto.getMbId().equals("admin") ) { %>
-					  	<a href = "BoardGomodify.do?boardid=<%=dto.getBoardSeq()%>" class="btn btn-warning btn-sm">수정</a>
-					  	<a href = "Boarddelte.do?boardid=<%=dto.getBoardSeq()%>" class="btn btn-info btn-sm">삭제</a>
-					  <% } %>
+				    	<input type="submit" class="btn btn-info btn-sm" value = "작성">
+				    	
+					  <button type="reset" class="btn btn-warning btn-sm" >취소</button>
 				    </div>
 				  </div>
 				</form>
