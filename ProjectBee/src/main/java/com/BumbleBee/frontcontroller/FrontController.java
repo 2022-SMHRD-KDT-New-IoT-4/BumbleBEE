@@ -23,6 +23,7 @@ import com.BumbleBee.controller.Command;
 import com.BumbleBee.controller.GoMain;
 import com.BumbleBee.controller.GoModify;
 import com.BumbleBee.controller.GoSelect;
+import com.BumbleBee.controller.Load;
 import com.BumbleBee.controller.Login;
 import com.BumbleBee.controller.Modify;
 import com.BumbleBee.controller.Logout;
@@ -68,6 +69,8 @@ public class FrontController extends HttpServlet {
 		
 		map.put("BhSelect.do", new BhSelect());
 		map.put("Start.do", new Start());
+		
+		map.put("Load.do", new Load());
 		
 	}
 	

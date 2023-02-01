@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*모든 테이블에 적용*/
+table{                             
+    border-collapse: collapse;
+
+}
+
+/*모든 캡션태그에 적용*/
+caption{
+    display: none;
+}
+/*모든 a태그에 적용*/
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.board_list_wrap{
+    padding: 80px;
+}
+
+.board_list{
+    width: 100%;
+    border-top: 3px solid #FFBF00;
+    
+}
+
+.board_list tr{
+    border-bottom: 1px solid #999;
+}
+
+.board_list th,
+.board_list td{
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.board_list td {
+    text-align: center;
+}
+.board_list .title {
+   text-align: center
+}
+.board_list .title :hover{
+   text-decoration: underline;
+}
+.board_list_wrap .page{
+    margin-top: 10px;
+    font-size: 0;
+    text-align: center;
+}
+/* .board_list_wrap .page a{
+    font-size: 12px;
+    margin-left: 10px;
+} */
+.board_list_wrap .page a{
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+}
+
+
+/*게시글 작성*/
+
+.form_box {
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 4px;
+    border: 1px solid rgb(254, 204, 4);
+    padding: 10px;
+    width: auto
+    
+
+}
+.input_field {
+    border: 1px solid rgb(254, 204, 4);
+    border-radius: 4px;
+    padding: 4px;
+    margin: 3px 0;
+    font-size: 14px;
+    width: 100%;
+    background-color: #fff8e1;
+} 
+.textarea_field {
+    border: 1px solid rgb(254, 204, 4);
+    border-radius: 4px;
+    padding: 4px;
+    margin: 3px 0;
+    font-size: 14px;
+    width: 100%;
+    height: 160px;
+    background-color: #fff8e1;
+}
+.write_button {
+    text-align: center;
+    background-color: rgb(254, 204, 4);
+    border: 1px solid rgb(254, 204, 4);
+    color: black;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 18px;
+}
+
+
+
+

@@ -27,8 +27,8 @@ public class TbBeehiveDAO {
 	
 	
 	
-	public List<TbBeehiveDAO> bhselect() {
-		List<TbBeehiveDAO> list = null;
+	public List<TbBeehiveDTO> bhselect() {
+		List<TbBeehiveDTO> list = null;
 		SqlSession session = sqlSessionFactory.openSession(true);		
 		try {
 			list = session.selectList("com.BumbleBee.model.TbBeehiveDAO.bhselect");

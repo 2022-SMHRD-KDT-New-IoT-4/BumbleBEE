@@ -5,11 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="./assets/css/noscript.css" />
+    </noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,40 +32,21 @@
 	<% if(mdto == null) {
 		response.sendRedirect("Start.do");
 	} %>
-	<div class="container">
-		<h2>자유게시판</h2>
-		<div class="panel panel-default">
-			<!--<div class="panel-heading"></div> -->
-			<div class="panel-body">
-				
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="title">제목:</label>
-				    <div class="col-sm-10">
-				      <%= dto.getBoardTitle() %>
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="contents">내용:</label>
-				    <div class="col-sm-10">
-				      <%= dto.getBoardContent() %>
-				    </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <div class="col-sm-offset-2 col-sm-10">
-					  <% if(dto.getMbId().equals(mdto.getMbId()) || mdto.getMbId().equals("admin") ) { %>
-					  	<a href = "BoardGomodify.do?boardid=<%=dto.getBoardSeq()%>" class="btn btn-warning btn-sm">수정</a>
-					  	<a href = "Boarddelte.do?boardid=<%=dto.getBoardSeq()%>" class="btn btn-info btn-sm">삭제</a>
-					  <% } %>
-				    </div>
-				  </div>
-				</form>
-			</div>
-			
-			
-			
-			<!--<div class="panel-body"></div>-->
-		</div>
-	</div>
+    <article id="boardwrite" class="panel">
+            <article id="boardwrite" class="panel">
+            <div class="form_box">
+                <h3 class="text-warning text-bold">게시글 제목</h3>
+				<%= dto.getBoardTitle() %> <br>
+				<%= dto.getBoardContent() %> <br>
+				<% if(dto.getMbId().equals(mdto.getMbId()) || mdto.getMbId().equals("admin") ) { %>
+                <div class="d-flex justify-content-center">
+                	<button type="button" onclick="location.href = 'BoardGomodify.do?boardid=<%=dto.getBoardSeq()%>'" class="btn btn-warning btn-sm"" class="btn btn-warning">수정하기</button>
+                	<button type="button" onclick="location.href = 'Boarddelte.do?boardid=<%=dto.getBoardSeq()%>'" class="btn btn-warning">삭제</button>
+                </div>
+                <% } %>
+            </div>
+            
+            </article>
+    </article>
 </body>
 </html>

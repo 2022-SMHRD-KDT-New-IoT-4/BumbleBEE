@@ -318,3 +318,5 @@ for (i = 0; i < 5; i++) {
 	document.getElementById("day" + (i + 1)).innerHTML = weekday[CheckDay(i)];
 }
 
+
+

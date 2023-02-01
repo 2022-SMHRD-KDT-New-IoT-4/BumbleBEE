@@ -130,8 +130,10 @@
                             
                           </div>
                         <div class="d-flex justify-content-center">
-                            
-                            <a href = "Boardgowrite.do">글쓰기</a>
+                            <div class="d-flex justify-content-center">
+                				<button type="button" onclick="location.href = 'Boardgowrite.do'" class="btn btn-warning">글쓰기</button>
+                				<button type="button" onclick="location.href = 'Main.do'" class="btn btn-warning">메인으로</button>
+               				 </div>
                         </div>
                         
                         
