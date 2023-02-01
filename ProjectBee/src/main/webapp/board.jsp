@@ -1,3 +1,4 @@
+<%@page import="com.BumbleBee.model.TbBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,31 +12,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% String data = (String)request.getAttribute("data"); %>
+	<% TbBoardDTO dto =  (TbBoardDTO)request.getAttribute("board"); %>
 	<div class="container">
-		<h2>수정</h2>
+		<h2>자유게시판</h2>
 		<div class="panel panel-default">
 			<!--<div class="panel-heading"></div> -->
 			<div class="panel-body">
-				<form class="form-horizontal" action="Boardmodify.do?boardid=<%=data%>" method="post">
+				
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="title">제목:</label>
 				    <div class="col-sm-10">
-				      <input type="text" name="title" class="form-control" id="title" placeholder="제목입력">
+				      <%= dto.getBoardTitle() %>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="contents">내용:</label>
 				    <div class="col-sm-10">
-				      <textarea placeholder="내용입력" class="form-control" id="contents" name="content" rows="15" cols=""></textarea>
+				      <%= dto.getBoardContent() %>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
-				    	<input type="submit" class="btn btn-info btn-sm" value = "작성">
-				    	
-					  <button type="reset" class="btn btn-warning btn-sm" >취소</button>
+					  <button type="reset" class="btn btn-warning btn-sm" >수정</button>
+					  <button type="submit" class="btn btn-info btn-sm" >삭제</button>
 				    </div>
 				  </div>
 				</form>

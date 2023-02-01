@@ -22,7 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="modal_style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
 
 </head>
 <style>
@@ -49,80 +49,6 @@
     }
 </style>
 
-<script>
-    function loadFn() {
-		console.log('실행');
-		
-        $.ajax({
-            url: "Load.do",		// 데이터를 가져올 경로 설정
-            dataType : "json",
-            success: function(info){	// 데이터를 가져왔을때 동작. 매개변수로 data 입력
-            	var t = []
-           		var h = [];
-           		var w = [];
-            	$.each(info, function(index, obj) {
-            		//t.push(Number(obj.bhTemp));
-            		t.push(Math.floor(Math.random() * 30));
-            	})
-            	$.each(info, function(index, obj) {
-            		//h.push(Number(obj.bhHumid));
-            		h.push(Math.floor(Math.random() * 100));
-            	})
-            	$.each(info, function(index, obj) {
-            		//w.push(Number(obj.bhWeight)/1000);
-            		w.push(Math.floor(Math.random() * 50));
-            	})
-            	
-            	
-            	const labels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24    (H)'];
-
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: '온도',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-
-      data: t,
-    },
-       {
-         label: '습도',
-         backgroundColor: 'rgb(0, 191, 255)',
-         borderColor: 'rgb(0, 191, 255)',
-         data: h,
-       },
-     {
-         label: '무게',
-         backgroundColor: 'rgb(255, 255, 0)',
-         borderColor: 'rgb(255, 255, 0)',
-         data: w,
-       }]
-     };
-
-  const config = {
-    type: 'line',
-    data: data,
-    options: {
-       responsive:false,
-        text: '',
-            indexAxis: '',
-    }
-  };
-
-  const myChart = new Chart(
-          document.getElementById('myChart'),
-          config,
-          
-        );
- 
-            },
-            error : function(){
-                alert('실패 ㅠㅠ');
-    		}
-        }) 	
-     }
- </script>
-
 <body class="is-preload">
 	<% TbMemberDTO user = (TbMemberDTO)session.getAttribute("user"); %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -137,7 +63,7 @@
 
         	<!--  <a href="#login" class="icon solid fa-key"><span>로그인</span></a> -->
             <!-- <a href="#member" class="icon solid fa-user-plus"><span>회원가입</span></a>  -->
-            <a href="#dashboard" class="icon solid fa-table" onclick = "loadFn()"><span>대시보드</span></a>
+            <a href="BhSelect.do" class="icon solid fa-table"><span>대시보드</span></a>
            	<a href="#weather" class="icon solid fa-cloud"><span>날씨정보</span></a>
             <a href="#inform" class="icon solid fa-folder"><span>양봉정보</span></a>
             <a href="Boardmain.do" class="icon solid fa-book"><span>게시판</span></a>
@@ -459,9 +385,6 @@
                         </td>
                     </tr>
                 </table>
-                <div class="chart-container" style="position: relative; height:40vh; width:30vw">
-       				<canvas id="myChart" width="600" height="300"></canvas>
-      			 </div>
             </article>
             <!-- 대쉬보드 끝 -->
 
