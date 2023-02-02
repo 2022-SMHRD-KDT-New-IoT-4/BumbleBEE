@@ -16,5 +16,16 @@
   		from tbbeehive
   		order by bhseq desc
   	</select>
+  	
+  	<select id="bhselectseq" resultType="TbBeehiveDTO">
+  		select max(bhseq) 
+  		from tbbeehive
+  	</select>
+  	
+  	<select id="bhselectone" parameterType="TbBeehiveDTO" resultType="TbBeehiveDTO">
+  		select * 
+  		from tbbeehive
+  		where bhseq = #{bhSeq}
+  	</select>
   
 </mapper>

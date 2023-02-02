@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>My Portfolio</title>
+<meta charset="euc-kr" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<a href="#" class="image avatar"><img src="images/avatar.jpg"
+				alt="" /></a>
+			<h1>
+				<strong>I am OOO </strong>, a super simple<br /> responsive
+				site template freebie<br />
+		</div>
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- One -->
+		<section id="one">
+			<header class="major">
+				<h2>안녕하세요. 개발자000입니다.</h2>
+			</header>
+			<p>쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고
+				싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말
+				와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다 쓰고 싶은 말 와다다다다다</p>
+			<ul class="actions">
+				<li><a href="#" class="button">Learn More</a></li>
+			</ul>
+		</section>
+
+		<!-- Two -->
+		<section id="two">
+			<h2>Recent Work</h2>
+			<div class="row">
+				<article class="col-6 col-12-xsmall work-item">
+					<canvas id='activeUsersChart' width='322' height='190'></canvas>
+					<h3>Graph</h3>
+					<p>Google api를 이용한 그래프 그리기</p>
+				</article>
+				<article class="col-6 col-12-xsmall work-item">
+					<div id='map' class="image fit thumb">
+						<img src="images/thumbs/02.jpg" alt="" />
+					</div>
+					<h3>KakaoMap</h3>
+					<p>Kakao map을 이용한 지도 띄우기</p>
+				</article>
+
+
+			</div>
+			<ul class="actions">
+				<li><a href="#" class="button">Full Portfolio</a></li>
+			</ul>
+		</section>
+
+		<!-- Three -->
+		<section id="three">
+			<h2>Ajax Test</h2>
+			<p>화면 전환없이 Server로부터 데이터를 받아봅시다!</p>
+			<div class="row">
+				<div class="col-8 col-12-small">
+					<form method="post" action="#">
+						<div class="row gtr-uniform gtr-50">
+							<div class="col-6 col-12-xsmall">
+								<input type="text" name="id" id="id" placeholder="Id" />
+							</div>
+							<div class="col-6 col-12-xsmall">
+								<input type="password" name="pw" id="pw" placeholder="Password" />
+							</div>
+							<div class="col-12">
+								<textarea name="message" id="message" placeholder="Message"
+									rows="4"></textarea>
+							</div>
+						</div>
+					</form>
+					<ul class="actions">
+						<li><input type="button" value="Send Message" id="button" /></li>
+					</ul>
+				</div>
+				<div class="col-4 col-12-small">
+					<ul class="labeled-icons">
+						<li>
+							<h3 class="icon solid fa-home">
+								<span class="label">Address</span>
+							</h3> 여기에 주소.<br />
+						</li>
+						<li>
+							<h3 class="icon solid fa-mobile-alt">
+								<span class="label">Phone</span>
+							</h3> 여기에 번호.
+						</li>
+						<li>
+							<h3 class="icon solid fa-envelope">
+								<span class="label">Email</span>
+							</h3> <a href="#">여기에 이메일</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span
+						class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span
+						class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Untitled</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
+	<script>
+			 //Ajax Test
+			 $('#button').on('click',function(){
+				
+				 
+				let id = $('#id').val();
+				$('#id').val('') ;
+				let pw = $('#pw').val();
+				$('#pw').val('') ;
+				let obj = {
+						'id' : id,
+						'pw' : pw
+				}
+				
+				 $.ajax({
+					//ajax는 webcontent기준으로 url을 잡는다...
+						url : '../../ex01Ajax?',
+						data : obj,
+						//contentType : 'application/x-www-form-urlencoded; charset = euc-kr',
+						success : function(res) {
+							$('.fa-home').after(res);
+						},
+						error : function() {
+							alert('요청실패');
+						}
+				 
+				 })
+			 })
+			
+			
+			</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+			const random = () => {
+				  return Math.round(Math.random() * 100) + 20
+				}
+
+			//배열 형태의 랜덤한 데이터 가져오기
+			const randomData = () => {
+				  return [
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random(),
+				    random()
+				  ]
+				}
+			
+			const activeUsersChart = new Chart(document.getElementById('activeUsersChart'), {
+				  type: 'bar', //차트타입 'bar','pie','polarArea' 등등
+				  data: {
+				    labels: [...randomData(), ...randomData()], //x축 라벨설정
+				    //매개변수 앞에 마침표 3개(...)를 입력하면 매개변수들이 배열로 들어온다.
+				    datasets: [ //들어갈 데이터
+				      {
+				        data: [...randomData(), ...randomData()], //데이터
+				        backgroundColor:   'rgba(75, 192, 192, 0.2)', //데이터색상
+				        borderWidth: 0, //?
+				        categoryPercentage: 1, //?
+				      },
+				    ] 
+				  },
+				  options: { //scales, legend, tooltips, hover
+				    scales: { //x축,y축 설정
+				    	y: {
+				            grid: {
+				               drawOnChartArea:false
+				             }
+				          },
+				      x: {
+				          grid: {
+				             drawOnChartArea:false
+				           }
+				        },
+				    },
+				    legend: { //범례 표시여부
+				      display: false,
+				    }
+				  }
+				})
+			
+			let randomUserCount = 0
+			const fakeUsersCount = () => {
+				  randomUserCount = random();
+				  activeUsersChart.data.datasets[0].data.splice(0, 1) //데이터 삭제
+				  activeUsersChart.data.datasets[0].data.push(randomUserCount); //데이터 추가
+				  activeUsersChart.update() //업데이트
+				}
+
+				setInterval(() => { //특정 시간에 한번씩 반복하게끔 하는 메소드
+				  fakeUsersCount()
+				}, 1000)
+			</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4203a6c86f81b4b1eb6751acd84dde8f&libraries=services,clusterer,drawing"></script>
+	<script>
+	//지도와 함께 사용할 수 있는 다양한 라이브러리
+	//1) clusterer : 마커를 클러스터링 할 수 있는 클러스터러 라이브러리
+	//2) services : 장소 검색과 주소-좌표 변환을 할 수 있는 services 라이브러리
+	//3) drawing : 지도 위에 마커와 그래픽스 객체를 쉼게 그릴 수 있게 그리기 모드를 지원하는 drawing 라이브러리
+		let container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		let options = { //지도를 생성할 때 필요한 기본 옵션
+				center : new kakao.maps.LatLng(33.450701,126.570667), //지도의 중심좌표
+				level : 3 //지도의 레벨(확대, 축소 정도)
+		}
+		let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+		//클릭한 위치에 마커 표출
+		let marker = new kakao.maps.Marker({
+			position:map.getCenter() // 지도 중심좌표에 마커 생성
+		});
+		
+		marker.setMap(map); // 지도에 마커 표시
+		
+		//지도에 클릭이벤트 등록해보기
+		kakao.maps.event.addListener(map,'click',function(mouseEvent){
+			//클릭한 위도,경도 정보가져오기
+			let latlng = mouseEvent.latLng;
+			//마커 위치를 클릭한 위치로 옮기기
+			marker.setPosition(latlng);
+			let message = '클릭한 위치의 위도는' + latlng.getLat() +'이고, 경도는' + latlng.getLng()+'입니다.';
+			console.log(message);
+		})
+		
+		//만약 내 위치를 가져오고 싶다면, navigator api나 geolacation api 사용해서 위치 정보 가져오기
+	</script>
+
+</body>
+</html>

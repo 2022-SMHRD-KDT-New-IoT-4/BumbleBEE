@@ -41,6 +41,38 @@ public class TbBeehiveDAO {
 		
 		return list;
 	}
+
+
+
+
+	public TbBeehiveDTO bhselectid() {
+		TbBeehiveDTO list = null;
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		try {
+			list = session.selectOne("com.BumbleBee.model.TbBeehiveDAO.bhselectseq");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+
+
+
+	public TbBeehiveDTO bhselectone(TbBeehiveDTO dto) {
+		TbBeehiveDTO list = null;
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		try {
+			list = session.selectOne("com.BumbleBee.model.TbBeehiveDAO.bhselectone", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 	
 	
 	
