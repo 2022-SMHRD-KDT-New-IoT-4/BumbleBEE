@@ -12,14 +12,15 @@
 	
   	
   	<select id="bhselect" resultType="TbBeehiveDTO">
-  		select bhseq, bhweight, bhtemp, bhhumid 
-  		from tbbeehive
-  		order by bhseq desc
-  	</select>
-  	
-  	<select id="bhselectseq" resultType="TbBeehiveDTO">
-  		select max(bhseq) 
-  		from tbbeehive
+  	<![CDATA[
+  		select *
+  		from (
+            select *
+            from tbbeehive
+            order by bhseq desc
+        )
+  		where rownum <= 24
+  		]]>
   	</select>
   	
   	<select id="bhselectone" parameterType="TbBeehiveDTO" resultType="TbBeehiveDTO">

@@ -15,13 +15,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <noscript>
     <link rel="stylesheet" href="./assets/css/noscript.css" />
     </noscript>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="modal_style.css">
+    <!-- <link rel="stylesheet" href="modal_style.css"> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
@@ -392,26 +392,24 @@
        				<canvas id="myChart" width="600" height="300"></canvas>
       			 </div>
       			 <script>
+             	var t = [];
+           		var h = [];
+           		var w = [];
     function loadFn() {
 		console.log('실행');
 		
-		const next = () => {
-			$.ajax({
-	            url: "Load.do",		// 데이터를 가져올 경로 설정
-	            dataType : "json",
-	            success: function(info){	// 데이터를 가져왔을때 동작. 매개변수로 data 입력
-	            	var one = [];
-	            	$.each(info, function(index, obj) {
-	            		one.push(Number(obj.bhTemp));
-	            		h.push(Number(obj.bhHumid));
-	            		w.push(Number(obj.bhWeight)/1000);
-	            	})
-			return one;
-				})
-			}
 		
 		const random = () => {
 			  return Math.round(Math.random() * 100) + 20
+			}
+		const random1 = () => {
+			  return Math.round(Math.random() * 10) + 20
+			}
+		const random2 = () => {
+			  return Math.round(Math.random() * 25) + 40
+			}
+		const random3 = () => {
+			  return Math.random() * 10
 			}
 		
 		const randomData = () => {
@@ -435,22 +433,17 @@
             url: "Load.do",		// 데이터를 가져올 경로 설정
             dataType : "json",
             success: function(info){	// 데이터를 가져왔을때 동작. 매개변수로 data 입력
-            	var t = []
-           		var h = [];
-           		var w = [];
+            
             	$.each(info, function(index, obj) {
             		t.push(Number(obj.bhTemp));
-            		//t.push(Math.floor(Math.random() * 30));
-            	})
-            	$.each(info, function(index, obj) {
             		h.push(Number(obj.bhHumid));
-            		//h.push(Math.floor(Math.random() * 100));
-            	})
-            	$.each(info, function(index, obj) {
-            		w.push(Number(obj.bhWeight)/1000);
-            		//w.push(Math.floor(Math.random() * 50));
-            	})
-            	
+            		w.push(Number(obj.bhWeight)/100);
+            		
+            		//t.push(Math.floor(Math.random() * 30));
+            	});
+            	t.reverse();
+        		h.reverse();
+        		w.reverse();
             	
             	const labels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24    (H)'];
 
@@ -495,10 +488,10 @@
 //  let randomUserCount2 = 0
 //  let randomUserCount3 = 0
 	const fakeUsersCount = () => {
-//		  randomUserCount1 = random();
-//		  randomUserCount2 = random();
-//		  randomUserCount3 = random();
-		  $.ajax()
+
+		  randomUserCount1 = random1();
+		  randomUserCount2 = random2();
+		  randomUserCount3 = random3();
 		  myChart.data.datasets[0].data.splice(0, 1) //데이터 삭제
 		  myChart.data.datasets[1].data.splice(0, 1) //데이터 삭제
 		  myChart.data.datasets[2].data.splice(0, 1) //데이터 삭제
@@ -519,7 +512,12 @@
         }) 	
      }
    	loadFn();
+   	
+
  </script>
+ 
+ 
+ 
             </article>
             <!-- 대쉬보드 끝 -->
 
