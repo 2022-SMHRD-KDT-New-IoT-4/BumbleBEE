@@ -24,6 +24,7 @@ import com.BumbleBee.controller.GoMain;
 import com.BumbleBee.controller.GoModify;
 import com.BumbleBee.controller.GoSelect;
 import com.BumbleBee.controller.Load;
+import com.BumbleBee.controller.Load2;
 import com.BumbleBee.controller.Login;
 import com.BumbleBee.controller.Modify;
 import com.BumbleBee.controller.Logout;
@@ -71,6 +72,7 @@ public class FrontController extends HttpServlet {
 		map.put("Start.do", new Start());
 		
 		map.put("Load.do", new Load());
+		map.put("Load2.do", new Load2());
 		
 	}
 	

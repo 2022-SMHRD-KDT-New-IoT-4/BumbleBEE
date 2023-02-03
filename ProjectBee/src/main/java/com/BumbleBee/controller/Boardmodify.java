@@ -25,7 +25,7 @@ public class Boardmodify implements Command {
 			data = requestURL.append('?').append(queryString).toString();
 		}
 		data = data.substring(data.indexOf("=") + 1);
-		
+		System.out.println(data);
 		// 1. 수정할 데이터 가져오기
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");

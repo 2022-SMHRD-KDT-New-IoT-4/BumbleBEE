@@ -1,0 +1,75 @@
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <ArduinoJson.h>
+#include "DHT.h"
+
+DHT mydht(33, DHT11);
+int led1 = 17; // 초록
+int led2 = 16; // 빨강
+int weightPin = 34;
+const char* ssid = "Lol"; // WIFI ID
+const char* password = "14231423"; // WIFI PW
+
+// Server 요청 주소
+String address = "http://210.223.207.16:8081/ProjectBee/api/info";
+
+String result = ""; // 응답 결과 저장
+HTTPClient http; // 통신 객체
+void setup() {
+
+  Serial.begin(115200);
+  mydht.begin(); // Baud rate
+  pinMode(weightPin,INPUT);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(10000);
+    Serial.println("Connecting to WiFi..");
+  }
+
+  Serial.println("Connected to the WiFi network");
+}
+
+void loop() {
+
+  delay(10000);
+  if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
+    float t = mydht.readTemperature();
+    float h = mydht.readHumidity();
+    float we = analogRead(weightPin);
+    
+    http.begin(address);
+    String buffer = "{\"temperature\":";
+    buffer += t; // temperature
+    buffer += ",\"humidity\":";
+    buffer += h; // humidity
+    buffer += ",\"weight\":"; 
+    buffer +=  we; // weight
+    buffer += "}";
+    if(35 < t || t < 0) {
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, HIGH);
+    } else if(65 < h || h < 40) {
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, HIGH);
+    } else {
+      digitalWrite(led2, LOW);
+      digitalWrite(led1, HIGH);
+    }
+    Serial.println(buffer);
+    
+    int httpCode = http.POST(buffer); // 응답코드
+    Serial.println(httpCode);
+    if (httpCode == 302) {
+      Serial.println("서버 전송 성공"); // 응답코드 출력      
+    } else {
+      Serial.println("서버 전송 실패"); // 응답코드 출력      
+    }
+
+    http.end(); //Free the resources
+  } else {
+    Serial.println("Error on HTTP request");
+  }
+  
+}

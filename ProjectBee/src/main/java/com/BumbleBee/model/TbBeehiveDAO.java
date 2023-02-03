@@ -49,7 +49,7 @@ public class TbBeehiveDAO {
 		TbBeehiveDTO list = null;
 		SqlSession session = sqlSessionFactory.openSession(true);		
 		try {
-			list = session.selectOne("com.BumbleBee.model.TbBeehiveDAO.bhselectseq");
+			list = session.selectOne("com.BumbleBee.model.TbBeehiveDAO.bhselectone");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -61,11 +61,11 @@ public class TbBeehiveDAO {
 
 
 
-	public TbBeehiveDTO bhselectone(TbBeehiveDTO dto) {
+	public TbBeehiveDTO bhselectone() {
 		TbBeehiveDTO list = null;
 		SqlSession session = sqlSessionFactory.openSession(true);		
 		try {
-			list = session.selectOne("com.BumbleBee.model.TbBeehiveDAO.bhselectone", dto);
+			list = session.selectOne("com.BumbleBee.model.TbBeehiveDAO.bhselectone");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -73,7 +73,7 @@ public class TbBeehiveDAO {
 		}
 		return list;
 	}
-	
+
 	
 	
 	

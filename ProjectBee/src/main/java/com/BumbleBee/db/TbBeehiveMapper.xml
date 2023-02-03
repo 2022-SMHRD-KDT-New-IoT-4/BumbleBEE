@@ -23,10 +23,14 @@
   		]]>
   	</select>
   	
-  	<select id="bhselectone" parameterType="TbBeehiveDTO" resultType="TbBeehiveDTO">
+  	<select id="bhselectone" resultType="TbBeehiveDTO">
+  	<![CDATA[
   		select * 
-  		from tbbeehive
-  		where bhseq = #{bhSeq}
+		from (select bhseq, bhweight, bhtemp, bhhumid
+  		from (select bhseq, bhweight, bhtemp, bhhumid from tbbeehive order by bhseq desc)
+  		where rownum <= 1)
+        order by bhseq
+        ]]>
   	</select>
   
 </mapper>

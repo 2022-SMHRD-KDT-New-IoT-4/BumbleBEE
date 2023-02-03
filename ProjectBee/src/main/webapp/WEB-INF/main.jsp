@@ -395,6 +395,9 @@
              	var t = [];
            		var h = [];
            		var w = [];
+             	var t2 = [];
+           		var h2 = [];
+           		var w2 = [];
     function loadFn() {
 		console.log('실행');
 		
@@ -484,27 +487,44 @@
           document.getElementById('myChart'),
           config
         );
+  
+  const next = () =>  { $.ajax({
+      url: "Load2.do",		// 데이터를 가져올 경로 설정
+      dataType : "json",
+      success: function(info){	// 데이터를 가져왔을때 동작. 매개변수로 data 입력
+      console.log(info);
+
+      		t2 =Number(info[0].bhTemp);
+      		h2 =Number(info[0].bhHumid);
+      		w2 =Number(info[].bhWeight)/1000;
+
+      	var n = [];
+      	n.push(t2);
+      	n.push(h2);
+      	n.push(w2);
+      	myChart.data.datasets[0].data.push(n[0]); //데이터 추가
+		myChart.data.datasets[1].data.push(n[1]); //데이터 추가
+		myChart.data.datasets[2].data.push(n[2]); //데이터 추가
+		myChart.update() //업데이트
+      }
+  	})
+  }
 //  let randomUserCount1 = 0
 //  let randomUserCount2 = 0
 //  let randomUserCount3 = 0
 	const fakeUsersCount = () => {
-
-		  randomUserCount1 = random1();
-		  randomUserCount2 = random2();
-		  randomUserCount3 = random3();
+//		  randomUserCount1 = random1();
+//		  randomUserCount2 = random2();
+//		  randomUserCount3 = random3();
 		  myChart.data.datasets[0].data.splice(0, 1) //데이터 삭제
 		  myChart.data.datasets[1].data.splice(0, 1) //데이터 삭제
 		  myChart.data.datasets[2].data.splice(0, 1) //데이터 삭제
-		  
-		  myChart.data.datasets[0].data.push(randomUserCount1); //데이터 추가
-		  myChart.data.datasets[1].data.push(randomUserCount2); //데이터 추가
-		  myChart.data.datasets[2].data.push(randomUserCount3); //데이터 추가
-		  myChart.update() //업데이트
+		  next();
 		}
 
 		setInterval(() => { //특정 시간에 한번씩 반복하게끔 하는 메소드
 		  fakeUsersCount()
-		}, 1000)
+		}, 5000)
             },
             error : function(){
                 alert('실패 ㅠㅠ');
